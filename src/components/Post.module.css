@@ -1,3 +1,7 @@
-#postCard {
-  background-color: red;
+.postCard {
+  background-color: antiquewhite;
+}
+
+.postUsername {
+  text-align: left;
 }

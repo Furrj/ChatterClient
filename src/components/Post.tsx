@@ -9,11 +9,15 @@ interface IProps {
 
 const Post: React.FC<IProps> = ({ data }) => {
   return (
-    <div id={styles.postCard} className="card">
-      <div>
-        {data.title}
+    <div className={`card ${styles.postCard}`}>
+      <div className={styles.postUsername}>
+        By {data.user} on {data.date}
         <hr />
       </div>
+      <h3>
+        {data.title}
+        <hr />
+      </h3>
       <div>{data.text}</div>
     </div>
   );

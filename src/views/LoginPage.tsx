@@ -55,7 +55,7 @@ const LoginPage: React.FC<IProps> = ({
       setLoggedIn(true);
       setUserInfo(data);
       setInvalidInfo(false);
-      return navigate("/mytodos");
+      return navigate("/mainfeed");
     } else {
       setInvalidInfo(true);
     }

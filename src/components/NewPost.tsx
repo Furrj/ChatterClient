@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./NewPost.module.css";
 
 import { IUser } from "../App";
 
@@ -72,9 +73,9 @@ const NewPost: React.FC<IProps> = ({ userInfo }) => {
       <div>
         <textarea
           name="text"
-          id="text"
+          id="input"
           placeholder="Content"
-          className="input"
+          className={`input ${styles.contentInput}`}
           onChange={inputHandler}
           value={postInfo.text}
         ></textarea>
