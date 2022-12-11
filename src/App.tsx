@@ -10,6 +10,7 @@ import LoginPage from "./views/LoginPage";
 import RegisterPage from "./views/RegisterPage";
 import HomePage from "./views/HomePage";
 import MyTodos from "./views/MyTodos";
+import MainFeed from "./views/MainFeed";
 
 //STATE
 export type IUser = {
@@ -59,6 +60,7 @@ const App: React.FC = () => {
             }
           />
           <Route path="/mytodos" element={<MyTodos userId={userInfo.id} />} />
+          <Route path="/mainfeed" element={<MainFeed userInfo={userInfo} />} />
         </Routes>
         <Footer />
       </div>

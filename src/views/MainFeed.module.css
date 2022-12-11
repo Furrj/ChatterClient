@@ -1,0 +1,8 @@
+#feedCont {
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr 50px 1fr;
+}
+
+#postCol {
+  grid-column: 3;
+}

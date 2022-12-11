@@ -49,6 +49,10 @@ body {
   font-size: 500%;
 }
 
+.input {
+  text-align: center;
+}
+
 @media only screen and (max-width: 450px) {
   .allTodosCont {
     display: flex;

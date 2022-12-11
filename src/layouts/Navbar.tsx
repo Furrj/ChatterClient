@@ -35,8 +35,13 @@ const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn }) => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
-            <li className="nav-item">
+          <li className="nav-item">
               <Link className="nav-link btn" to="/">
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link btn" to="/mainfeed">
                 Main Feed
               </Link>
             </li>
