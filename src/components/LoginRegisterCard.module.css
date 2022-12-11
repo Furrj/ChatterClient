@@ -1,0 +1,11 @@
+.card {
+  position: fixed;
+  width: 30%;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.button {
+  border: none;
+  border-radius: 5px;
+}

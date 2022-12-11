@@ -1,8 +1,17 @@
-#feedCont {
+.feedCont {
   display: grid;
   grid-template-columns: 1fr 50px 1fr 50px 1fr;
 }
 
-#postCol {
+.postCol {
   grid-column: 3;
+}
+
+.rightPanel {
+  grid-column: 5;
+  border: 1px solid black;
+  position: fixed;
+  width: 30%;
+  right: 0;
+  height: 100vh;
 }

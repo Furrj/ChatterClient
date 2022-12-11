@@ -4,6 +4,7 @@ import styles from "./MainFeed.module.css";
 //COMPS
 import Post from "../components/Post";
 import NewPost from "../components/NewPost";
+import LoginRegisterCard from "../components/LoginRegisterCard";
 
 import { IUser } from "../App";
 
@@ -12,7 +13,7 @@ interface IProps {
 }
 
 export interface IPost {
-  title: string;
+  id: string;
   text: string;
   date: string;
   user: any;
@@ -20,10 +21,16 @@ export interface IPost {
 
 const MainFeed: React.FC<IProps> = ({ userInfo }) => {
   const [posts, setPosts] = useState<IPost[]>([]);
+  const [rerender, setRerender] = useState<boolean>(false);
 
   useEffect(() => {
     fetchData();
-  }, []);
+    console.log("UseEffect triggered");
+  }, [rerender]);
+
+  const fetchAgain = () => {
+    setRerender(!rerender);
+  };
 
   const fetchData = async (): Promise<void> => {
     try {
@@ -33,7 +40,7 @@ const MainFeed: React.FC<IProps> = ({ userInfo }) => {
       const newState: IPost[] = [];
       for (let d of rawData) {
         const newPost: IPost = {
-          title: d.title,
+          id: d._id,
           text: d.text,
           date: d.date,
           user: d.author.username,
@@ -47,14 +54,20 @@ const MainFeed: React.FC<IProps> = ({ userInfo }) => {
   };
 
   const content: JSX.Element[] = posts.map((p) => {
-    return <Post data={p} />;
+    return <Post key={p.id} data={p} />;
   });
 
   return (
-    <div id={styles.feedCont}>
-      <div>{userInfo.valid && <NewPost userInfo={userInfo} />}</div>
-      <div id={styles.postCol}>{content}</div>
-      <div></div>
+    <div className={styles.feedCont}>
+      <div>
+        {userInfo.valid ? (
+          <NewPost userInfo={userInfo} />
+        ) : (
+          <LoginRegisterCard />
+        )}
+      </div>
+      <div className={styles.postCol}>{content}</div>
+      <div className={styles.rightPanel}></div>
     </div>
   );
 };

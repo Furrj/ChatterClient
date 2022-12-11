@@ -11,13 +11,9 @@ const Post: React.FC<IProps> = ({ data }) => {
   return (
     <div className={`card ${styles.postCard}`}>
       <div className={styles.postUsername}>
-        By {data.user} on {data.date}
+        By <span className={styles.username}>{data.user}</span> on {data.date}
         <hr />
       </div>
-      <h3>
-        {data.title}
-        <hr />
-      </h3>
       <div>{data.text}</div>
     </div>
   );

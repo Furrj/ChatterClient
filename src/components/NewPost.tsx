@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./NewPost.module.css";
+import getCurrentDate from "../utils/getDate";
 
 import { IUser } from "../App";
 
@@ -8,27 +9,15 @@ interface IProps {
 }
 
 interface IState {
-  title: string;
   text: string;
 }
 
 const initState: IState = {
-  title: "",
   text: "",
 };
 
 const NewPost: React.FC<IProps> = ({ userInfo }) => {
   const [postInfo, setPostInfo] = useState<IState>(initState);
-
-  const getCurrentDate = (): string => {
-    const today = new Date();
-    const dd = String(today.getDate()).padStart(2, "0");
-    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    const yyyy = today.getFullYear();
-
-    const date = mm + "/" + dd + "/" + yyyy;
-    return date;
-  };
 
   const inputHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -38,7 +27,6 @@ const NewPost: React.FC<IProps> = ({ userInfo }) => {
 
   const submitPost = async (): Promise<void> => {
     const newPost = {
-      title: postInfo.title,
       text: postInfo.text,
       date: getCurrentDate(),
       user: userInfo.id,
@@ -58,23 +46,16 @@ const NewPost: React.FC<IProps> = ({ userInfo }) => {
   };
 
   return (
-    <div id="newPost" className="card">
-      <div>
-        <input
-          type="text"
-          name="title"
-          placeholder="Title"
-          className="input mt-1"
-          onChange={inputHandler}
-          value={postInfo.title}
-        />
+    <div className={`card ${styles.newPost}`}>
+      <div className="card-title">
+        By <span className={styles.username}>{userInfo.username}</span> on{" "}
+        {getCurrentDate()}
         <hr />
       </div>
       <div>
         <textarea
           name="text"
           id="input"
-          placeholder="Content"
           className={`input ${styles.contentInput}`}
           onChange={inputHandler}
           value={postInfo.text}

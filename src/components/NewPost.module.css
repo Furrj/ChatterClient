@@ -2,3 +2,14 @@
   width: 100%;
   border-radius: 10px;
 }
+
+.newPost {
+  position: fixed;
+  width: 30%;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.username {
+  color: rgb(71, 10, 225);
+}
