@@ -1,0 +1,1 @@
+Social Media site made in React with Typescript

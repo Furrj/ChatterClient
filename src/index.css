@@ -1,0 +1,70 @@
+body {
+  text-align: center;
+  background-color: rgb(18, 55, 55);
+}
+
+.wrapper {
+  min-height: 100%;
+  margin-bottom: 50px;
+}
+
+.push {
+  height: 50px;
+}
+
+.regCard {
+  background-color: aquamarine;
+}
+
+.loginCard {
+  background-color: aquamarine;
+}
+
+.todo {
+  width: 30%;
+  background-color: aquamarine;
+}
+
+.allTodosCont {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.addTodo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.addTodo:hover {
+  background-color: beige;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.addTodo h1 {
+  color: red;
+  font-size: 500%;
+}
+
+@media only screen and (max-width: 450px) {
+  .allTodosCont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .todo {
+    width: 80%;
+  }
+
+  .regCard {
+    width: 80%;
+  }
+
+  .loginCard {
+    width: 80%;
+  }
+}
