@@ -16,7 +16,8 @@ export interface IPost {
   id: string;
   text: string;
   date: string;
-  user: any;
+  user?: any;
+  guestAuthor?: string;
 }
 
 const MainFeed: React.FC<IProps> = ({ userInfo }) => {
@@ -39,13 +40,23 @@ const MainFeed: React.FC<IProps> = ({ userInfo }) => {
       const rawData = await res.json();
       const newState: IPost[] = [];
       for (let d of rawData) {
-        const newPost: IPost = {
-          id: d._id,
-          text: d.text,
-          date: d.date,
-          user: d.author.username,
-        };
-        newState.push(newPost);
+        if (!d.guestAuthor) {
+          const newPost: IPost = {
+            id: d._id,
+            text: d.text,
+            date: d.date,
+            user: d.author.username,
+          };
+          newState.push(newPost);
+        } else {
+          const newPost: IPost = {
+            id: d._id,
+            text: d.text,
+            date: d.date,
+            user: d.guestAuthor,
+          };
+          newState.push(newPost);
+        }
       }
       setPosts(newState);
     } catch (e) {
@@ -60,14 +71,10 @@ const MainFeed: React.FC<IProps> = ({ userInfo }) => {
   return (
     <div className={styles.feedCont}>
       <div>
-        {userInfo.valid ? (
-          <NewPost userInfo={userInfo} />
-        ) : (
-          <LoginRegisterCard />
-        )}
+        <NewPost userInfo={userInfo} />
       </div>
       <div className={styles.postCol}>{content}</div>
-      <div className={styles.rightPanel}></div>
+      <div className={`card ${styles.rightPanel}`}></div>
     </div>
   );
 };

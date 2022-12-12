@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./NewPost.module.css";
+
+//UTILS
 import getCurrentDate from "../utils/getDate";
+import generateGuestName from "../utils/generateGuestName";
 
 import { IUser } from "../App";
 
@@ -12,12 +15,25 @@ interface IState {
   text: string;
 }
 
+interface IPostSend {
+  text: string;
+  date: string;
+  user?: string;
+  guestAuthor?: string;
+}
+
 const initState: IState = {
   text: "",
 };
 
 const NewPost: React.FC<IProps> = ({ userInfo }) => {
   const [postInfo, setPostInfo] = useState<IState>(initState);
+
+  useEffect(() => {
+    if (userInfo.valid === false) {
+      userInfo.username = generateGuestName();
+    }
+  }, []);
 
   const inputHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -26,13 +42,16 @@ const NewPost: React.FC<IProps> = ({ userInfo }) => {
   };
 
   const submitPost = async (): Promise<void> => {
-    const newPost = {
-      text: postInfo.text,
-      date: getCurrentDate(),
-      user: userInfo.id,
-    };
+    const newPost: IPostSend = { text: postInfo.text, date: getCurrentDate() };
+
+    if (userInfo.valid) {
+      newPost.user = userInfo.id;
+    } else {
+      newPost.guestAuthor = userInfo.username;
+    }
+
     try {
-      const res = await fetch("http://localhost:5000/api", {
+      const res = await fetch("http://localhost:5000/api/newPost", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

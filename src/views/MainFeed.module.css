@@ -8,10 +8,12 @@
 }
 
 .rightPanel {
+  margin-top: 10px;
+  margin-right: 10px;
   grid-column: 5;
   border: 1px solid black;
   position: fixed;
-  width: 30%;
+  width: 20%;
   right: 0;
-  height: 100vh;
+  height: 80vh;
 }
