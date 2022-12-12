@@ -2,12 +2,46 @@
   background-color: aquamarine;
   margin-top: 10px;
   margin-bottom: 5px;
-}
-
-.postUsername {
-  text-align: left;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  word-break: break-all;
 }
 
 .username {
   color: rgb(71, 10, 225);
+}
+
+.button {
+  border-radius: 5px;
+  background: rgba(128, 128, 128, 0.346);
+}
+
+.cardLeft {
+  border-right: 1px solid black;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.like {
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.like:hover {
+  background-color: aqua;
+}
+
+.dislike {
+  border-top: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dislike:hover {
+  background-color: aqua;
 }

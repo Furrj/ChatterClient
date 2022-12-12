@@ -58,6 +58,7 @@ const MainFeed: React.FC<IProps> = ({ userInfo }) => {
           newState.push(newPost);
         }
       }
+      newState.reverse();
       setPosts(newState);
     } catch (e) {
       console.log(`Error: ${e}`);

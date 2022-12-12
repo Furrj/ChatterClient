@@ -10,11 +10,21 @@ interface IProps {
 const Post: React.FC<IProps> = ({ data }) => {
   return (
     <div className={`card ${styles.postCard}`}>
-      <div className={styles.postUsername}>
-        By <span className={styles.username}>{data.user}</span> on {data.date}
-        <hr />
+      <div className={styles.cardLeft}>
+        <div className={styles.like}>+</div>
+        <div></div>
+        <div className={styles.dislike}>-</div>
       </div>
-      <div>{data.text}</div>
+      <div>
+        <div className={styles.cardTop}>
+          <div className={styles.postUsername}>
+            By <span className={styles.username}>{data.user}</span> on{" "}
+            {data.date}
+          </div>
+          <hr />
+        </div>
+        <div>{data.text}</div>
+      </div>
     </div>
   );
 };
