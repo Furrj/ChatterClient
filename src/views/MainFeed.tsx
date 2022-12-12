@@ -4,7 +4,6 @@ import styles from "./MainFeed.module.css";
 //COMPS
 import Post from "../components/Post";
 import NewPost from "../components/NewPost";
-import LoginRegisterCard from "../components/LoginRegisterCard";
 
 import { IUser } from "../App";
 
@@ -16,6 +15,8 @@ export interface IPost {
   id: string;
   text: string;
   date: string;
+  likes: number;
+  dislikes: number;
   user?: any;
   guestAuthor?: string;
 }
@@ -45,6 +46,8 @@ const MainFeed: React.FC<IProps> = ({ userInfo }) => {
             id: d._id,
             text: d.text,
             date: d.date,
+            likes: d.likes,
+            dislikes: d.dislikes,
             user: d.author.username,
           };
           newState.push(newPost);
@@ -53,6 +56,8 @@ const MainFeed: React.FC<IProps> = ({ userInfo }) => {
             id: d._id,
             text: d.text,
             date: d.date,
+            likes: d.likes,
+            dislikes: d.dislikes,
             user: d.guestAuthor,
           };
           newState.push(newPost);
@@ -72,7 +77,7 @@ const MainFeed: React.FC<IProps> = ({ userInfo }) => {
   return (
     <div className={styles.feedCont}>
       <div>
-        <NewPost userInfo={userInfo} />
+        <NewPost userInfo={userInfo} fetchAgain={fetchAgain} />
       </div>
       <div className={styles.postCol}>{content}</div>
       <div className={`card ${styles.rightPanel}`}></div>

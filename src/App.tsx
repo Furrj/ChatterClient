@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //UI
@@ -12,6 +12,9 @@ import HomePage from "./views/HomePage";
 import MyTodos from "./views/MyTodos";
 import MainFeed from "./views/MainFeed";
 import ProfilePage from "./views/ProfilePage";
+
+//UTILS
+import generateGuestName from "./utils/generateGuestName";
 
 //STATE
 export type IUser = {
@@ -29,6 +32,12 @@ export const initState = {
 const App: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [userInfo, setUserInfo] = useState<IUser>(initState);
+
+  useEffect(() => {
+    if (userInfo.valid === false) {
+      userInfo.username = generateGuestName();
+    }
+  }, []);
 
   return (
     <BrowserRouter>

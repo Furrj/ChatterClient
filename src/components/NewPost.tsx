@@ -3,12 +3,12 @@ import styles from "./NewPost.module.css";
 
 //UTILS
 import getCurrentDate from "../utils/getDate";
-import generateGuestName from "../utils/generateGuestName";
 
 import { IUser } from "../App";
 
 interface IProps {
   userInfo: IUser;
+  fetchAgain: () => void;
 }
 
 interface IState {
@@ -26,14 +26,8 @@ const initState: IState = {
   text: "",
 };
 
-const NewPost: React.FC<IProps> = ({ userInfo }) => {
+const NewPost: React.FC<IProps> = ({ userInfo, fetchAgain }) => {
   const [postInfo, setPostInfo] = useState<IState>(initState);
-
-  useEffect(() => {
-    if (userInfo.valid === false) {
-      userInfo.username = generateGuestName();
-    }
-  }, []);
 
   const inputHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -59,6 +53,8 @@ const NewPost: React.FC<IProps> = ({ userInfo }) => {
         body: JSON.stringify(newPost),
       });
       await res.json();
+      setPostInfo(initState);
+      fetchAgain();
     } catch (e) {
       console.log(`Error: ${e}`);
     }
