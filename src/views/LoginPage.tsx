@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import styles from "./LoginPage.module.css";
 
-//LAYOUTS
-import CardWrapper from "../layouts/CardWrapper";
-
 //TS
 import { IUser } from "../App";
 
@@ -69,7 +66,7 @@ const LoginPage: React.FC<IProps> = ({
         password.getAttribute("type") === "password" ? "text" : "password";
       password.setAttribute("type", type);
     }
-    const eye = document.querySelector("#eye1");
+    const eye = document.querySelector("#eye");
     if (eye) {
       if (eye.classList.contains("fa-eye-slash")) {
         eye.classList.remove("fa-eye-slash");
@@ -87,8 +84,8 @@ const LoginPage: React.FC<IProps> = ({
   };
 
   return (
-    <CardWrapper>
-      <div className="card mt-3 loginCard">
+    <div className={styles.loginCont}>
+      <div className={`card mt-3 ${styles.loginCard}`}>
         <div>Username: </div>
         <input
           type="text"
@@ -125,7 +122,7 @@ const LoginPage: React.FC<IProps> = ({
           Login
         </button>
       </div>
-    </CardWrapper>
+    </div>
   );
 };
 

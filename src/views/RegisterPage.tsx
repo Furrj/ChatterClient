@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import styles from "./RegisterPage.module.css";
 
-//LAYOUTS
-import CardWrapper from "../layouts/CardWrapper";
-
 //TS
 import { IUser } from "../App";
 
@@ -113,8 +110,8 @@ const RegisterPage: React.FC<IProps> = ({
   };
 
   return (
-    <CardWrapper>
-      <div className="card mt-3 regCard">
+    <div className={styles.regCont}>
+      <div className={`card mt-3 ${styles.regCard}`}>
         <div>Username: </div>
         <input
           type="text"
@@ -174,7 +171,7 @@ const RegisterPage: React.FC<IProps> = ({
           Register
         </button>
       </div>
-    </CardWrapper>
+    </div>
   );
 };
 

@@ -4,6 +4,19 @@ body {
   color: whitesmoke;
 }
 
+input {
+  text-align: center;
+}
+
+textarea {
+  text-align: center;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .light-mode {
   background-color: white;
 }
@@ -11,11 +24,6 @@ body {
 .navbar {
   position: fixed;
   width: 100%;
-}
-
-hr {
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .wrapper {
@@ -33,14 +41,6 @@ hr {
 
 .cardLightMode {
   background-color: lightcyan;
-}
-
-input {
-  text-align: center;
-}
-
-textarea {
-  text-align: center;
 }
 
 @media only screen and (max-width: 450px) {

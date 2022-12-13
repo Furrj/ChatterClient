@@ -1,3 +1,12 @@
+.loginCont {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+.loginCard {
+  grid-column: 2;
+}
+
 .passwordCont {
   position: relative;
 }
@@ -7,4 +16,13 @@
   top: 57%;
   right: 1%;
   cursor: pointer;
+  color: black;
+}
+
+@media only screen and (max-width: 450px) {
+  .loginCont {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
 }
