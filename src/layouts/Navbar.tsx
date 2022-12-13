@@ -18,6 +18,10 @@ const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn }) => {
     setUserInfo(initState);
   };
 
+  const toggleMode = () => {
+    document.body.classList.toggle("light-mode");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div className="container-fluid">
@@ -57,6 +61,11 @@ const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn }) => {
                 <Link className="nav-link btn" to="/register">
                   Register
                 </Link>
+              </li>
+              <li className="nav-item">
+                <span className="nav-link btn" onClick={toggleMode}>
+                  <i className="fa-solid fa-circle-half-stroke"></i>
+                </span>
               </li>
             </ul>
           )}

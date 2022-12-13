@@ -10,7 +10,7 @@ interface IProps {
 const Post: React.FC<IProps> = ({ data }) => {
   const [points, setPoints] = useState<number>(data.likes - data.dislikes);
 
-  const upvote = async (): Promise<void> => {
+  const upvote = async (e: React.MouseEvent<HTMLDivElement>): Promise<void> => {
     setPoints((points) => points + 1);
     try {
       const res = await fetch("http://localhost:5000/api/update", {
@@ -26,7 +26,9 @@ const Post: React.FC<IProps> = ({ data }) => {
     }
   };
 
-  const downvote = async (): Promise<void> => {
+  const downvote = async (
+    e: React.MouseEvent<HTMLDivElement>
+  ): Promise<void> => {
     setPoints((points) => points - 1);
     try {
       const res = await fetch("http://localhost:5000/api/update", {
