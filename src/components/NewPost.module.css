@@ -1,6 +1,14 @@
+
+
 .contentInput {
   width: 100%;
   border-radius: 10px;
+  background: darkslategray;
+  color: white;
+}
+
+.contentInput:focus {
+  outline: none !important;
 }
 
 .newPost {
@@ -10,6 +18,22 @@
   margin-left: 5px;
 }
 
+.cardTitle {
+  position: relative;
+  text-align: left;
+}
+
 .username {
-  color: rgb(71, 10, 225);
+  color: rgb(175, 159, 215);
+  margin-left: 5px;
+}
+
+.date {
+  position: absolute;
+  color: grey;
+  right: 5px;
+}
+
+.belowInput {
+  margin-top: 2px;
 }

@@ -58,10 +58,8 @@ const Post: React.FC<IProps> = ({ data }) => {
       </div>
       <div>
         <div className={styles.cardTop}>
-          <div className={styles.postUsername}>
-            <span className={styles.username}>{data.user}</span>
-            <span className={styles.date}>{data.date}</span>
-          </div>
+          <span className={styles.username}>{data.user}</span>
+          <span className={styles.date}>{data.date}</span>
           <hr />
         </div>
         <div>{data.text}</div>

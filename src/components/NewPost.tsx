@@ -62,9 +62,9 @@ const NewPost: React.FC<IProps> = ({ userInfo, fetchAgain }) => {
 
   return (
     <div className={`card ${styles.newPost}`}>
-      <div className="card-title">
-        By <span className={styles.username}>{userInfo.username}</span> on{" "}
-        {getCurrentDate()}
+      <div className={styles.cardTitle}>
+        <span className={styles.username}>{userInfo.username}</span>
+        <span className={styles.date}>{getCurrentDate()}</span>
         <hr />
       </div>
       <div>
@@ -75,7 +75,7 @@ const NewPost: React.FC<IProps> = ({ userInfo, fetchAgain }) => {
           onChange={inputHandler}
           value={postInfo.text}
         ></textarea>
-        <hr />
+        <hr className={styles.belowInput} />
       </div>
       <button onClick={submitPost}>Submit</button>
     </div>

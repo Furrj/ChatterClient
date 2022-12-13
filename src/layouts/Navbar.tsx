@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "./Navbar.module.css";
 
 import { initState } from "../App";
 
@@ -72,7 +73,7 @@ const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn }) => {
           {loggedIn && (
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <Link className="nav-link btn text-info" to="/profile">
+                <Link className={`nav-link btn ${styles.profile}`} to="/profile">
                   Profile
                 </Link>
               </li>
@@ -80,6 +81,11 @@ const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn }) => {
                 <Link className="nav-link btn" to="/login" onClick={logout}>
                   Logout
                 </Link>
+              </li>
+              <li className="nav-item">
+                <span className="nav-link btn" onClick={toggleMode}>
+                  <i className="fa-solid fa-circle-half-stroke"></i>
+                </span>
               </li>
             </ul>
           )}
