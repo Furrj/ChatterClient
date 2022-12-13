@@ -76,7 +76,7 @@ const MainFeed: React.FC<IProps> = ({ userInfo }) => {
 
   return (
     <div className={styles.feedCont}>
-      <div>
+      <div className={styles.newPostDiv}>
         <NewPost userInfo={userInfo} fetchAgain={fetchAgain} />
       </div>
       <div className={styles.postCol}>{content}</div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
-
+import toggleMode from "../utils/toggleColorMode";
 import { initState } from "../App";
 
 //TS
@@ -17,10 +17,6 @@ const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn }) => {
   const logout = (e: React.MouseEvent<HTMLAnchorElement>): void => {
     setLoggedIn(false);
     setUserInfo(initState);
-  };
-
-  const toggleMode = () => {
-    document.body.classList.toggle("light-mode");
   };
 
   return (

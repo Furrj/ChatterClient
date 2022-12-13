@@ -3,6 +3,13 @@
   grid-template-columns: 1fr 50px 1fr 50px 1fr;
 }
 
+.newPost {
+  position: fixed;
+  width: 30%;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
 .postCol {
   grid-column: 3;
 }
@@ -16,4 +23,24 @@
   width: 30%;
   right: 0;
   height: 80vh;
+}
+
+@media only screen and (max-width: 450px) {
+  .feedCont {
+    grid-template-columns: 3fr 1fr;
+    margin-left: 5px;
+  }
+
+  .newPost {
+    position: sticky;
+    grid-column: 1;
+  }
+
+  .postCol {
+    grid-column: 1;
+  }
+
+  .rightPanel {
+    height: 85vh;
+  }
 }

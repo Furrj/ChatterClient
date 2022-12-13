@@ -1,7 +1,7 @@
 body {
   text-align: center;
   background-color: rgb(8, 21, 21);
-  color: white;
+  color: whitesmoke;
 }
 
 .light-mode {
@@ -29,6 +29,10 @@ hr {
 
 .card {
   background-color: darkslategray;
+}
+
+.cardLightMode {
+  background-color: lightcyan;
 }
 
 input {

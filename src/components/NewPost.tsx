@@ -77,7 +77,7 @@ const NewPost: React.FC<IProps> = ({ userInfo, fetchAgain }) => {
         ></textarea>
         <hr className={styles.belowInput} />
       </div>
-      <button onClick={submitPost}>Submit</button>
+      <button className={`btn btn-info ${styles.submitButton}`} onClick={submitPost}>Submit</button>
     </div>
   );
 };
