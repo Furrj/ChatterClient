@@ -80,7 +80,9 @@ const MainFeed: React.FC<IProps> = ({ userInfo }) => {
         <NewPost userInfo={userInfo} fetchAgain={fetchAgain} />
       </div>
       <div className={styles.postCol}>{content}</div>
-      <div className={`card ${styles.rightPanel}`}></div>
+      <div className={`card ${styles.rightPanel}`}>
+        <div>Communities</div>
+      </div>
     </div>
   );
 };

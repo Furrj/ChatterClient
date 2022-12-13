@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, NavigateFunction } from "react-router-dom";
+import styles from "./LoginPage.module.css";
 
 //LAYOUTS
 import CardWrapper from "../layouts/CardWrapper";
@@ -61,6 +62,23 @@ const LoginPage: React.FC<IProps> = ({
     }
   };
 
+  const togglePassword = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    const password = document.querySelector("#password");
+    if (password) {
+      const type =
+        password.getAttribute("type") === "password" ? "text" : "password";
+      password.setAttribute("type", type);
+    }
+    const eye = document.querySelector("#eye1");
+    if (eye) {
+      if (eye.classList.contains("fa-eye-slash")) {
+        eye.classList.remove("fa-eye-slash");
+      } else {
+        eye.classList.toggle("fa-eye-slash");
+      }
+    }
+  };
+
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setUserInuput({
       ...userInput,
@@ -80,14 +98,22 @@ const LoginPage: React.FC<IProps> = ({
           className="form-control"
         />
         <br />
-        <div>Password:</div>
-        <input
-          type="text"
-          name="password"
-          value={userInput.password}
-          onChange={inputHandler}
-          className="form-control"
-        />
+        <div className={styles.passwordCont}>
+          <div>Password:</div>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            value={userInput.password}
+            onChange={inputHandler}
+            className="form-control"
+          />
+          <i
+            className={`fa-solid fa-eye fa-eye-slash ${styles.eye}`}
+            id="eye"
+            onClick={togglePassword}
+          />
+        </div>
         <br />
         {invalidInfo && (
           <div>

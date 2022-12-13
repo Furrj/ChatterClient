@@ -3,6 +3,15 @@ body {
   background-color: rgb(18, 55, 55);
 }
 
+.light-mode {
+  background-color: white;
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+}
+
 hr {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -13,11 +22,15 @@ hr {
   margin-bottom: 50px;
 }
 
+.push {
+  height: 60px;
+}
+
 .card {
   background-color: aquamarine;
 }
 
-.input {
+input {
   text-align: center;
 }
 

@@ -12,6 +12,7 @@ import HomePage from "./views/HomePage";
 import MyTodos from "./views/MyTodos";
 import MainFeed from "./views/MainFeed";
 import ProfilePage from "./views/ProfilePage";
+import CommunitiesPage from "./views/CommunitiesPage";
 
 //UTILS
 import generateGuestName from "./utils/generateGuestName";
@@ -47,6 +48,7 @@ const App: React.FC = () => {
           setUserInfo={setUserInfo}
           setLoggedIn={setLoggedIn}
         />
+        <div className="push"></div>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
@@ -71,7 +73,8 @@ const App: React.FC = () => {
           />
           <Route path="/mytodos" element={<MyTodos userId={userInfo.id} />} />
           <Route path="/mainfeed" element={<MainFeed userInfo={userInfo} />} />
-          <Route path="profile" element={<ProfilePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/communities/*" element={<CommunitiesPage />} />
         </Routes>
         <Footer />
       </div>

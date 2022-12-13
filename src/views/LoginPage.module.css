@@ -1,0 +1,10 @@
+.passwordCont {
+  position: relative;
+}
+
+.eye{
+  position: absolute;
+  top: 55%;
+  right: 1%;
+  cursor: pointer;
+}
