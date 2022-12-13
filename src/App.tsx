@@ -48,7 +48,7 @@ const App: React.FC = () => {
           setUserInfo={setUserInfo}
           setLoggedIn={setLoggedIn}
         />
-        <div className="push"></div>
+        <div className="push" />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
@@ -76,6 +76,7 @@ const App: React.FC = () => {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/communities/*" element={<CommunitiesPage />} />
         </Routes>
+        <div className="push" />
         <Footer />
       </div>
     </BrowserRouter>

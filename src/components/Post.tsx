@@ -59,8 +59,8 @@ const Post: React.FC<IProps> = ({ data }) => {
       <div>
         <div className={styles.cardTop}>
           <div className={styles.postUsername}>
-            By <span className={styles.username}>{data.user}</span> on{" "}
-            {data.date}
+            <span className={styles.username}>{data.user}</span>
+            <span className={styles.date}>{data.date}</span>
           </div>
           <hr />
         </div>

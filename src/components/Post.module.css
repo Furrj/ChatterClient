@@ -1,5 +1,4 @@
 .postCard {
-  background-color: aquamarine;
   margin-top: 10px;
   margin-bottom: 5px;
   display: grid;
@@ -7,8 +6,20 @@
   word-break: normal;
 }
 
+.cardTop {
+  text-align: left;
+  position: relative;
+}
+
 .username {
-  color: rgb(71, 10, 225);
+  color: rgb(175, 159, 215);
+  margin-left: 5px;
+}
+
+.date {
+  color: grey;
+  position: absolute;
+  right: 5px;
 }
 
 .button {
@@ -31,7 +42,8 @@
 }
 
 .like:hover {
-  background-color: aqua;
+  background-color: darkcyan;
+  border-radius: 5px 0px 0px 0px;
 }
 
 .dislike {
@@ -43,5 +55,6 @@
 }
 
 .dislike:hover {
-  background-color: aqua;
+  background-color: darkcyan;
+  border-radius: 0px 0px 0px 5px;
 }
