@@ -4,6 +4,7 @@ import styles from "./MainFeed.module.css";
 //COMPS
 import Post from "../components/Post";
 import NewPost from "../components/NewPost";
+import AddNewPost from "../components/AddNewPost";
 
 import { IUser } from "../App";
 
@@ -24,11 +25,24 @@ export interface IPost {
 const MainFeed: React.FC<IProps> = ({ userInfo }) => {
   const [posts, setPosts] = useState<IPost[]>([]);
   const [rerender, setRerender] = useState<boolean>(false);
+  const [mobile, setMobile] = useState<boolean>(false);
 
   useEffect(() => {
+    if (window.innerWidth <= 450) {
+      setMobile(true);
+    }
+
     fetchData();
     console.log("UseEffect triggered");
   }, [rerender]);
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth <= 450) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+  });
 
   const fetchAgain = () => {
     setRerender(!rerender);
@@ -76,10 +90,16 @@ const MainFeed: React.FC<IProps> = ({ userInfo }) => {
 
   return (
     <div className={styles.feedCont}>
-      <div className={styles.newPostDiv}>
-        <NewPost userInfo={userInfo} fetchAgain={fetchAgain} />
+      <div className={styles.leftPanel}>
+        {mobile ? (
+          <AddNewPost />
+        ) : (
+          <NewPost userInfo={userInfo} fetchAgain={fetchAgain} />
+        )}
       </div>
-      <div className={styles.postCol}>{content}</div>
+      <div className={styles.postCol}>
+        <div>{content}</div>
+      </div>
       <div className={`card ${styles.rightPanel}`}>
         <div>Communities</div>
       </div>

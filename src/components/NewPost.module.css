@@ -1,7 +1,7 @@
 .contentInput {
   width: 100%;
   border-radius: 10px;
-  background: darkslategray;
+  background: rgb(63, 105, 105);
   color: white;
 }
 
@@ -30,6 +30,6 @@
 }
 
 .submitButton {
-  background-color: whitesmoke;
+  background-color: antiquewhite;
   border-color: whitesmoke;
 }

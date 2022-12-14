@@ -49,11 +49,11 @@ const Post: React.FC<IProps> = ({ data }) => {
     <div className={`card ${styles.postCard}`}>
       <div className={styles.cardLeft}>
         <div className={styles.like} onClick={upvote}>
-          +
+          <i className="fa-solid fa-thumbs-up" />
         </div>
         <div>{points}</div>
         <div className={styles.dislike} onClick={downvote}>
-          -
+          <i className="fa-solid fa-thumbs-down" />
         </div>
       </div>
       <div>

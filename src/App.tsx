@@ -9,7 +9,6 @@ import Navbar from "./layouts/Navbar";
 import LoginPage from "./views/LoginPage";
 import RegisterPage from "./views/RegisterPage";
 import HomePage from "./views/HomePage";
-import MyTodos from "./views/MyTodos";
 import MainFeed from "./views/MainFeed";
 import ProfilePage from "./views/ProfilePage";
 import CommunitiesPage from "./views/CommunitiesPage";
@@ -71,7 +70,6 @@ const App: React.FC = () => {
               />
             }
           />
-          <Route path="/mytodos" element={<MyTodos userId={userInfo.id} />} />
           <Route path="/mainfeed" element={<MainFeed userInfo={userInfo} />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/communities/*" element={<CommunitiesPage />} />

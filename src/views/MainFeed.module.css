@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 50px 1fr 50px 1fr;
 }
 
-.newPost {
+.leftPanel {
   position: fixed;
   width: 30%;
   margin-top: 10px;
@@ -25,19 +25,37 @@
   height: 80vh;
 }
 
+.sortBtnCont {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-items: center;
+  height: 40px;
+  margin-top: 10px;
+}
+
+.sortBtn {
+  border: 1px solid slategray;
+  border-radius: 15px;
+  padding: 3px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.sortBtn:hover {
+  background-color: slategray;
+}
+
 @media only screen and (max-width: 450px) {
   .feedCont {
     grid-template-columns: 3fr 1fr;
     margin-left: 5px;
   }
 
-  .newPost {
-    position: sticky;
-    grid-column: 1;
-  }
-
   .postCol {
     grid-column: 1;
+    margin-top: 120px;
   }
 
   .rightPanel {
