@@ -1,6 +1,6 @@
 .feedCont {
   display: grid;
-  grid-template-columns: 1fr 50px 1fr 50px 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .leftPanel {
@@ -11,7 +11,7 @@
 }
 
 .postCol {
-  grid-column: 3;
+  grid-column: 2;
 }
 
 .rightPanel {
@@ -49,16 +49,12 @@
 
 @media only screen and (max-width: 450px) {
   .feedCont {
-    grid-template-columns: 3fr 1fr;
-    margin-left: 5px;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
   }
 
   .postCol {
-    grid-column: 1;
-    margin-top: 120px;
-  }
-
-  .rightPanel {
-    height: 85vh;
+    grid-column: 2;
+    width: 100%;
   }
 }

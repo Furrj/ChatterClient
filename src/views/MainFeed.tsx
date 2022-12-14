@@ -90,19 +90,24 @@ const MainFeed: React.FC<IProps> = ({ userInfo }) => {
 
   return (
     <div className={styles.feedCont}>
-      <div className={styles.leftPanel}>
-        {mobile ? (
-          <AddNewPost />
-        ) : (
+      {!mobile && (
+        <div className={styles.leftPanel}>
           <NewPost userInfo={userInfo} fetchAgain={fetchAgain} />
-        )}
-      </div>
+        </div>
+      )}
       <div className={styles.postCol}>
+        {mobile && (
+          <div>
+            <AddNewPost />
+          </div>
+        )}
         <div>{content}</div>
       </div>
-      <div className={`card ${styles.rightPanel}`}>
-        <div>Communities</div>
-      </div>
+      {!mobile && (
+        <div className={`card ${styles.rightPanel}`}>
+          <div>Communities</div>
+        </div>
+      )}
     </div>
   );
 };

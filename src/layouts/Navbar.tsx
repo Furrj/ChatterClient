@@ -69,7 +69,10 @@ const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn }) => {
           {loggedIn && (
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <Link className={`nav-link btn ${styles.profile}`} to="/profile">
+                <Link
+                  className={`nav-link btn ${styles.profile}`}
+                  to="/profile"
+                >
                   Profile
                 </Link>
               </li>
