@@ -122,7 +122,52 @@ const MainFeed: React.FC<IProps> = ({ userInfo, darkMode }) => {
       </div>
       {!mobile && (
         <div className={`card ${styles.rightPanel} ${colorMode}`}>
-          <div>Communities</div>
+          <div>
+            <div className={`mt-2`}>Top Communities</div>
+            <hr className={styles.hr} />
+            <div className={styles.communityBox}>
+              <span className={styles.inCommunity}>
+                <i className="fa-solid fa-volleyball" /> Sports
+              </span>
+              <span className={styles.members}>Members: 4</span>
+            </div>
+            <hr className={styles.hr} />
+            <div className={styles.communityBox}>
+              <div className={styles.inCommunity}>
+                <i className="fa-solid fa-landmark" /> Politics
+              </div>
+              <div className={styles.members}>Members: 9</div>
+            </div>
+            <hr className={styles.hr} />
+            <div className={styles.communityBox}>
+              <div className={styles.inCommunity}>
+                <i className="fa-solid fa-music" /> Music
+              </div>
+              <div className={styles.members}>Members: 5</div>
+            </div>
+            <hr className={styles.hr} />
+            <div className={styles.communityBox}>
+              <div className={styles.inCommunity}>
+                <i className="fa-solid fa-earth-americas" /> News
+              </div>
+              <div className={styles.members}>Members: 15</div>
+            </div>
+            <hr className={styles.hr} />
+            <div className={styles.communityBox}>
+              <div className={styles.inCommunity}>
+              <i className="fa-solid fa-ticket-simple" /> Movies
+              </div>
+              <div className={styles.members}>Members: 3</div>
+            </div>
+            <hr className={styles.hr} />
+            <div className={styles.communityBox}>
+              <div className={styles.inCommunity}>
+              <i className="fa-solid fa-microchip" /> Tech
+              </div>
+              <div className={styles.members}>Members: 9</div>
+            </div>
+            <hr className={styles.hr} />
+          </div>
         </div>
       )}
     </div>

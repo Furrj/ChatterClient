@@ -22,7 +22,7 @@
   position: fixed;
   width: 30%;
   right: 0;
-  height: 80vh;
+  height: 78vh;
 }
 
 .sortBtnCont {
@@ -45,6 +45,31 @@
 
 .sortBtn:hover {
   background-color: slategray;
+}
+
+.communityBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+.inCommunity {
+  border: 1px solid black;
+  border-radius: 15px;
+  box-sizing: border-box;
+  width: 100px;
+}
+
+.inCommunity:hover {
+  background-color: darkgray;
+  cursor: pointer;
+}
+
+
+
+.members {
+  color: darkgrey;
 }
 
 @media only screen and (max-width: 450px) {
