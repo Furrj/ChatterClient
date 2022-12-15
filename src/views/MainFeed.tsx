@@ -99,13 +99,21 @@ const MainFeed: React.FC<IProps> = ({ userInfo, darkMode }) => {
     <div className={styles.feedCont}>
       {!mobile && (
         <div className={styles.leftPanel}>
-          <NewPost userInfo={userInfo} fetchAgain={fetchAgain} darkMode={darkMode} />
+          <NewPost
+            userInfo={userInfo}
+            fetchAgain={fetchAgain}
+            darkMode={darkMode}
+          />
         </div>
       )}
       <div className={styles.postCol}>
         {mobile && (
           <div>
-            <AddNewPost />
+            <AddNewPost
+              userInfo={userInfo}
+              fetchAgain={fetchAgain}
+              darkMode={darkMode}
+            />
           </div>
         )}
         <div>{content}</div>
