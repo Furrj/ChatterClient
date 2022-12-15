@@ -6,6 +6,7 @@ import toggleMode from "../utils/toggleColorMode";
 import Post from "../components/Post";
 import NewPost from "../components/NewPost";
 import AddNewPost from "../components/AddNewPost";
+import PolicyBox from "../components/PolicyBox";
 
 //TS
 import { IUser } from "../App";
@@ -104,6 +105,7 @@ const MainFeed: React.FC<IProps> = ({ userInfo, darkMode }) => {
             fetchAgain={fetchAgain}
             darkMode={darkMode}
           />
+          <PolicyBox darkMode={darkMode} />
         </div>
       )}
       <div className={styles.postCol}>
