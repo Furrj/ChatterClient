@@ -19,7 +19,7 @@ const Navbar: React.FC<IProps> = ({
   setUserInfo,
   setLoggedIn,
   darkMode,
-  toggleColorMode
+  toggleColorMode,
 }) => {
   const logout = (e: React.MouseEvent<HTMLAnchorElement>): void => {
     setLoggedIn(false);
@@ -28,7 +28,7 @@ const Navbar: React.FC<IProps> = ({
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-      <div className="container-fluid">
+      <div className={`container-fluid`}>
         <div className="navbar-brand text-info">Chatter</div>
         <button
           className="navbar-toggler"

@@ -44,6 +44,10 @@ hr {
   background-color: whitesmoke;
 }
 
+.navLightMode {
+  background-color: white;
+}
+
 #textAreaLightMode {
   background: lightblue;
   color: black;
