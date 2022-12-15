@@ -55,7 +55,7 @@ const Post: React.FC<IProps> = ({ data, darkMode }) => {
         <div className={styles.like} onClick={upvote}>
           <i className="fa-solid fa-thumbs-up" />
         </div>
-        <div>{points}</div>
+        <div className={styles.points}>{points}</div>
         <div className={styles.dislike} onClick={downvote}>
           <i className="fa-solid fa-thumbs-down" />
         </div>

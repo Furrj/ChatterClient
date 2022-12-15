@@ -22,6 +22,13 @@
   right: 5px;
 }
 
+.points {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
 .button {
   border-radius: 5px;
   background: rgba(128, 128, 128, 0.346);

@@ -139,37 +139,57 @@ const MainFeed: React.FC<IProps> = ({ userInfo, darkMode }) => {
             </div>
             <hr className={styles.hr} />
             <div className={styles.communityBox}>
-              <div className={styles.inCommunity}>
+              <Link
+                to="/communities/pol"
+                id={linkColorMode}
+                className={styles.inCommunity}
+              >
                 <i className="fa-solid fa-landmark" /> Politics
-              </div>
+              </Link>
               <div className={styles.members}>Members: 9</div>
             </div>
             <hr className={styles.hr} />
             <div className={styles.communityBox}>
-              <div className={styles.inCommunity}>
+              <Link
+                to="/communities/music"
+                id={linkColorMode}
+                className={styles.inCommunity}
+              >
                 <i className="fa-solid fa-music" /> Music
-              </div>
+              </Link>
               <div className={styles.members}>Members: 5</div>
             </div>
             <hr className={styles.hr} />
             <div className={styles.communityBox}>
-              <div className={styles.inCommunity}>
+              <Link
+                to="/communities/news"
+                id={linkColorMode}
+                className={styles.inCommunity}
+              >
                 <i className="fa-solid fa-earth-americas" /> News
-              </div>
+              </Link>
               <div className={styles.members}>Members: 15</div>
             </div>
             <hr className={styles.hr} />
             <div className={styles.communityBox}>
-              <div className={styles.inCommunity}>
+              <Link
+                to="/communities/movies"
+                id={linkColorMode}
+                className={styles.inCommunity}
+              >
                 <i className="fa-solid fa-ticket-simple" /> Movies
-              </div>
+              </Link>
               <div className={styles.members}>Members: 3</div>
             </div>
             <hr className={styles.hr} />
             <div className={styles.communityBox}>
-              <div className={styles.inCommunity}>
+              <Link
+                to="/communities/tech"
+                id={linkColorMode}
+                className={styles.inCommunity}
+              >
                 <i className="fa-solid fa-microchip" /> Tech
-              </div>
+              </Link>
               <div className={styles.members}>Members: 9</div>
             </div>
             <hr className={styles.hr} />
