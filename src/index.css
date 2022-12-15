@@ -17,10 +17,6 @@ hr {
   margin-bottom: 10px;
 }
 
-.light-mode {
-  background-color: white;
-}
-
 .navbar {
   position: fixed;
   width: 100%;
@@ -39,8 +35,18 @@ hr {
   background-color: darkslategray;
 }
 
-.cardLightMode {
+.light-mode {
   background-color: lightcyan;
+  color: black;
+}
+
+.cardLightMode {
+  background-color: whitesmoke;
+}
+
+#textAreaLightMode {
+  background: lightblue;
+  color: black;
 }
 
 @media only screen and (max-width: 450px) {

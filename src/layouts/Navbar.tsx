@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
-import toggleMode from "../utils/toggleColorMode";
 import { initState } from "../App";
 
 //TS
@@ -11,9 +10,17 @@ interface IProps {
   loggedIn: boolean;
   setUserInfo: React.Dispatch<React.SetStateAction<IUser>>;
   setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  darkMode: boolean;
+  toggleColorMode: () => void;
 }
 
-const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn }) => {
+const Navbar: React.FC<IProps> = ({
+  loggedIn,
+  setUserInfo,
+  setLoggedIn,
+  darkMode,
+  toggleColorMode
+}) => {
   const logout = (e: React.MouseEvent<HTMLAnchorElement>): void => {
     setLoggedIn(false);
     setUserInfo(initState);
@@ -60,7 +67,7 @@ const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn }) => {
                 </Link>
               </li>
               <li className="nav-item">
-                <span className="nav-link btn" onClick={toggleMode}>
+                <span className="nav-link btn" onClick={toggleColorMode}>
                   <i className="fa-solid fa-circle-half-stroke"></i>
                 </span>
               </li>
@@ -82,7 +89,7 @@ const Navbar: React.FC<IProps> = ({ loggedIn, setUserInfo, setLoggedIn }) => {
                 </Link>
               </li>
               <li className="nav-item">
-                <span className="nav-link btn" onClick={toggleMode}>
+                <span className="nav-link btn" onClick={toggleColorMode}>
                   <i className="fa-solid fa-circle-half-stroke"></i>
                 </span>
               </li>

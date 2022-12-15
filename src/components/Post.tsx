@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import styles from "./Post.module.css";
+import toggleMode from "../utils/toggleColorMode";
 
 import { IPost } from "../views/MainFeed";
 
 interface IProps {
   data: IPost;
+  darkMode: boolean;
 }
 
-const Post: React.FC<IProps> = ({ data }) => {
+const Post: React.FC<IProps> = ({ data, darkMode }) => {
   const [points, setPoints] = useState<number>(data.likes - data.dislikes);
+
+  let colorMode: string = darkMode ? "" : "cardLightMode";
 
   const upvote = async (e: React.MouseEvent<HTMLDivElement>): Promise<void> => {
     setPoints((points) => points + 1);
@@ -46,7 +50,7 @@ const Post: React.FC<IProps> = ({ data }) => {
   };
 
   return (
-    <div className={`card ${styles.postCard}`}>
+    <div className={`card ${styles.postCard} ${colorMode}`}>
       <div className={styles.cardLeft}>
         <div className={styles.like} onClick={upvote}>
           <i className="fa-solid fa-thumbs-up" />

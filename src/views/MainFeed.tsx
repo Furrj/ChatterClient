@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import styles from "./MainFeed.module.css";
+import toggleMode from "../utils/toggleColorMode";
 
 //COMPS
 import Post from "../components/Post";
 import NewPost from "../components/NewPost";
 import AddNewPost from "../components/AddNewPost";
 
+//TS
 import { IUser } from "../App";
 
 interface IProps {
   userInfo: IUser;
+  darkMode: boolean;
 }
 
 export interface IPost {
@@ -22,10 +25,12 @@ export interface IPost {
   guestAuthor?: string;
 }
 
-const MainFeed: React.FC<IProps> = ({ userInfo }) => {
+const MainFeed: React.FC<IProps> = ({ userInfo, darkMode }) => {
   const [posts, setPosts] = useState<IPost[]>([]);
   const [rerender, setRerender] = useState<boolean>(false);
   const [mobile, setMobile] = useState<boolean>(false);
+
+  let colorMode: string = darkMode ? "" : "cardLightMode";
 
   useEffect(() => {
     if (window.innerWidth <= 450) {
@@ -43,6 +48,8 @@ const MainFeed: React.FC<IProps> = ({ userInfo }) => {
       setMobile(false);
     }
   });
+
+  toggleMode(darkMode);
 
   const fetchAgain = () => {
     setRerender(!rerender);
@@ -85,14 +92,14 @@ const MainFeed: React.FC<IProps> = ({ userInfo }) => {
   };
 
   const content: JSX.Element[] = posts.map((p) => {
-    return <Post key={p.id} data={p} />;
+    return <Post key={p.id} data={p} darkMode={darkMode} />;
   });
 
   return (
     <div className={styles.feedCont}>
       {!mobile && (
         <div className={styles.leftPanel}>
-          <NewPost userInfo={userInfo} fetchAgain={fetchAgain} />
+          <NewPost userInfo={userInfo} fetchAgain={fetchAgain} darkMode={darkMode} />
         </div>
       )}
       <div className={styles.postCol}>
@@ -104,7 +111,7 @@ const MainFeed: React.FC<IProps> = ({ userInfo }) => {
         <div>{content}</div>
       </div>
       {!mobile && (
-        <div className={`card ${styles.rightPanel}`}>
+        <div className={`card ${styles.rightPanel} ${colorMode}`}>
           <div>Communities</div>
         </div>
       )}

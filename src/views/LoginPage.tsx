@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import styles from "./LoginPage.module.css";
+import toggleMode from "../utils/toggleColorMode";
 
 //TS
 import { IUser } from "../App";
@@ -20,18 +21,22 @@ interface IProps {
   setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
   userInfo: IUser;
   setUserInfo: React.Dispatch<React.SetStateAction<IUser>>;
+  darkMode: boolean;
 }
 
 const LoginPage: React.FC<IProps> = ({
   setLoggedIn,
   userInfo,
   setUserInfo,
+  darkMode,
 }) => {
   //Init State
   const [userInput, setUserInuput] = useState<IState>(initState);
   const [invalidInfo, setInvalidInfo] = useState<boolean>(false);
 
   const navigate: NavigateFunction = useNavigate();
+
+  let cardColorMode: string = darkMode ? "" : "cardLightMode";
 
   //Helper Functions
   const login = async (
@@ -84,8 +89,8 @@ const LoginPage: React.FC<IProps> = ({
   };
 
   return (
-    <div className={styles.loginCont}>
-      <div className={`card mt-3 ${styles.loginCard}`}>
+    <div className={`${styles.loginCont}`}>
+      <div className={`card mt-3 ${styles.loginCard} ${cardColorMode}`}>
         <div>Username: </div>
         <input
           type="text"

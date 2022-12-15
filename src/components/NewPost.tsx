@@ -9,6 +9,7 @@ import { IUser } from "../App";
 interface IProps {
   userInfo: IUser;
   fetchAgain: () => void;
+  darkMode: boolean;
 }
 
 interface IState {
@@ -26,9 +27,13 @@ const initState: IState = {
   text: "",
 };
 
-const NewPost: React.FC<IProps> = ({ userInfo, fetchAgain }) => {
+const NewPost: React.FC<IProps> = ({ userInfo, fetchAgain, darkMode }) => {
   const [postInfo, setPostInfo] = useState<IState>(initState);
 
+  let colorMode: string = darkMode ? "" : "cardLightMode";
+  let textAreaColorMode: string = darkMode ? "" : "textAreaLightMode";
+
+  //HELPER FUNCTIONS
   const inputHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -61,7 +66,7 @@ const NewPost: React.FC<IProps> = ({ userInfo, fetchAgain }) => {
   };
 
   return (
-    <div className={`card ${styles.newPost}`}>
+    <div className={`card ${styles.newPost} ${colorMode}`}>
       <div className={styles.cardTitle}>
         <span className={styles.username}>{userInfo.username}</span>
         <span className={styles.date}>{getCurrentDate()}</span>
@@ -70,7 +75,7 @@ const NewPost: React.FC<IProps> = ({ userInfo, fetchAgain }) => {
       <div>
         <textarea
           name="text"
-          id="input"
+          id={textAreaColorMode}
           className={`input ${styles.contentInput}`}
           onChange={inputHandler}
           value={postInfo.text}

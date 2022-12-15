@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import styles from "./RegisterPage.module.css";
+import toggleMode from "../utils/toggleColorMode";
 
 //TS
 import { IUser } from "../App";
@@ -22,18 +23,22 @@ interface IProps {
   setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
   userInfo: IUser;
   setUserInfo: React.Dispatch<React.SetStateAction<IUser>>;
+  darkMode: boolean;
 }
 
 const RegisterPage: React.FC<IProps> = ({
   setLoggedIn,
   userInfo,
   setUserInfo,
+  darkMode
 }) => {
   const [userInput, setUserInuput] = useState<IState>(initState);
   const [taken, setTaken] = useState<boolean>(false);
   const [invalidPasswords, setInvalidPasswords] = useState<boolean>(false);
 
   const navigate: NavigateFunction = useNavigate();
+
+  let colorMode: string = darkMode ? "" : "cardLightMode";
 
   useEffect(() => {
     if (
@@ -111,7 +116,7 @@ const RegisterPage: React.FC<IProps> = ({
 
   return (
     <div className={styles.regCont}>
-      <div className={`card mt-3 ${styles.regCard}`}>
+      <div className={`card mt-3 ${styles.regCard} ${colorMode}`}>
         <div>Username: </div>
         <input
           type="text"

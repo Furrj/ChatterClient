@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import toggleMode from "./utils/toggleColorMode";
 
 //UI
 import Footer from "./layouts/Footer";
@@ -32,12 +33,19 @@ export const initState = {
 const App: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [userInfo, setUserInfo] = useState<IUser>(initState);
+  const [darkMode, setDarkMode] = useState<boolean>(true);
 
   useEffect(() => {
     if (userInfo.valid === false) {
       userInfo.username = generateGuestName();
     }
   }, []);
+
+  const toggleColorMode = (): void => {
+    setDarkMode(!darkMode);
+  }
+  
+  toggleMode(darkMode);
 
   return (
     <BrowserRouter>
@@ -46,6 +54,8 @@ const App: React.FC = () => {
           loggedIn={loggedIn}
           setUserInfo={setUserInfo}
           setLoggedIn={setLoggedIn}
+          darkMode={darkMode}
+          toggleColorMode={toggleColorMode}
         />
         <div className="push" />
         <Routes>
@@ -57,6 +67,7 @@ const App: React.FC = () => {
                 setLoggedIn={setLoggedIn}
                 userInfo={userInfo}
                 setUserInfo={setUserInfo}
+                darkMode={darkMode}
               />
             }
           />
@@ -67,10 +78,11 @@ const App: React.FC = () => {
                 setLoggedIn={setLoggedIn}
                 userInfo={userInfo}
                 setUserInfo={setUserInfo}
+                darkMode={darkMode}
               />
             }
           />
-          <Route path="/mainfeed" element={<MainFeed userInfo={userInfo} />} />
+          <Route path="/mainfeed" element={<MainFeed userInfo={userInfo} darkMode={darkMode} />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/communities/*" element={<CommunitiesPage />} />
         </Routes>
