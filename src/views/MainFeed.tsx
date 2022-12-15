@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./MainFeed.module.css";
 import toggleMode from "../utils/toggleColorMode";
 
@@ -32,6 +33,7 @@ const MainFeed: React.FC<IProps> = ({ userInfo, darkMode }) => {
   const [mobile, setMobile] = useState<boolean>(false);
 
   let colorMode: string = darkMode ? "" : "cardLightMode";
+  let linkColorMode: string = darkMode ? "" : "linkLightMode";
 
   useEffect(() => {
     if (window.innerWidth <= 450) {
@@ -126,9 +128,13 @@ const MainFeed: React.FC<IProps> = ({ userInfo, darkMode }) => {
             <div className={`mt-2`}>Top Communities</div>
             <hr className={styles.hr} />
             <div className={styles.communityBox}>
-              <span className={styles.inCommunity}>
+              <Link
+                to="/communities/sports"
+                id={linkColorMode}
+                className={`${styles.inCommunity}`}
+              >
                 <i className="fa-solid fa-volleyball" /> Sports
-              </span>
+              </Link>
               <span className={styles.members}>Members: 4</span>
             </div>
             <hr className={styles.hr} />
@@ -155,14 +161,14 @@ const MainFeed: React.FC<IProps> = ({ userInfo, darkMode }) => {
             <hr className={styles.hr} />
             <div className={styles.communityBox}>
               <div className={styles.inCommunity}>
-              <i className="fa-solid fa-ticket-simple" /> Movies
+                <i className="fa-solid fa-ticket-simple" /> Movies
               </div>
               <div className={styles.members}>Members: 3</div>
             </div>
             <hr className={styles.hr} />
             <div className={styles.communityBox}>
               <div className={styles.inCommunity}>
-              <i className="fa-solid fa-microchip" /> Tech
+                <i className="fa-solid fa-microchip" /> Tech
               </div>
               <div className={styles.members}>Members: 9</div>
             </div>

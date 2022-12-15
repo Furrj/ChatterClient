@@ -53,6 +53,10 @@ hr {
   color: black;
 }
 
+#linkLightMode {
+  color: black;
+}
+
 @media only screen and (max-width: 450px) {
   .allTodosCont {
     display: flex;

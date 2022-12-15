@@ -59,14 +59,14 @@
   border-radius: 15px;
   box-sizing: border-box;
   width: 100px;
+  text-decoration: none;
+  color: white;
 }
 
 .inCommunity:hover {
   background-color: darkgray;
   cursor: pointer;
 }
-
-
 
 .members {
   color: darkgrey;
