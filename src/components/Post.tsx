@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./Post.module.css";
-import toggleMode from "../utils/toggleColorMode";
 
 import { IPost } from "../views/MainFeed";
 

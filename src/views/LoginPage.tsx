@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import styles from "./LoginPage.module.css";
-import toggleMode from "../utils/toggleColorMode";
 
 //TS
 import { IUser } from "../App";
