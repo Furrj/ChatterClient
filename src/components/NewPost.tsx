@@ -49,7 +49,7 @@ const NewPost: React.FC<IProps> = ({ userInfo, fetchAgain, darkMode }) => {
     const newPost: IPostSend = {
       text: postInfo.text,
       date: getCurrentDate(),
-      community: postInfo.community,
+      community: postInfo.community.toLowerCase(),
     };
 
     if (userInfo.valid) {
@@ -100,7 +100,6 @@ const NewPost: React.FC<IProps> = ({ userInfo, fetchAgain, darkMode }) => {
           <option value="All">All</option>
           <option value="Sports">Sports</option>
           <option value="Politics">Politics</option>
-          <option value="Music">Music</option>
           <option value="Music">Music</option>
           <option value="News">News</option>
           <option value="Movies">Movies</option>

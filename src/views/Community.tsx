@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import styles from "./SportsCom.module.css";
-import toggleMode from "../../utils/toggleColorMode";
+import { Link, useParams } from "react-router-dom";
+import styles from "./Community.module.css";
+import toggleMode from "../utils/toggleColorMode";
 
 //COMPS
-import Post from "../../components/Post";
-import NewPost from "../../components/NewPost";
-import AddNewPost from "../../components/AddNewPost";
-import PolicyBox from "../../components/PolicyBox";
+import Post from "../components/Post";
+import NewPost from "../components/NewPost";
+import AddNewPost from "../components/AddNewPost";
+import PolicyBox from "../components/PolicyBox";
 
 //TS
-import { IUser } from "../../App";
-import { IPost } from "../MainFeed";
+import { IUser } from "../App";
+import { IPost } from "./MainFeed";
 
 interface IProps {
   userInfo: IUser;
@@ -20,7 +20,7 @@ interface IProps {
   fetchData: () => void;
 }
 
-const SportsCom: React.FC<IProps> = ({
+const Community: React.FC<IProps> = ({
   userInfo,
   darkMode,
   data,
@@ -28,6 +28,10 @@ const SportsCom: React.FC<IProps> = ({
 }) => {
   const [rerender, setRerender] = useState<boolean>(false);
   const [mobile, setMobile] = useState<boolean>(false);
+
+  let { com } = useParams();
+
+  console.log(com);
 
   let colorMode: string = darkMode ? "" : "cardLightMode";
   let linkColorMode: string = darkMode ? "" : "linkLightMode";
@@ -55,7 +59,9 @@ const SportsCom: React.FC<IProps> = ({
     setRerender(!rerender);
   };
 
-  const presortedContent: IPost[] = data.filter(p => p.community === "Sports")
+  const presortedContent: IPost[] = data.filter(
+    (p) => p.community === com
+  );
 
   const content: JSX.Element[] = presortedContent.map((p) => {
     return <Post key={p.id} data={p} darkMode={darkMode} />;
@@ -103,7 +109,7 @@ const SportsCom: React.FC<IProps> = ({
             <hr className={styles.hr} />
             <div className={styles.communityBox}>
               <Link
-                to="/communities/pol"
+                to="/communities/politics"
                 id={linkColorMode}
                 className={styles.inCommunity}
               >
@@ -163,4 +169,4 @@ const SportsCom: React.FC<IProps> = ({
   );
 };
 
-export default SportsCom;
+export default Community;

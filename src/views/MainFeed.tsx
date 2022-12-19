@@ -111,7 +111,7 @@ const MainFeed: React.FC<IProps> = ({
             <hr className={styles.hr} />
             <div className={styles.communityBox}>
               <Link
-                to="/communities/pol"
+                to="/communities/politics"
                 id={linkColorMode}
                 className={styles.inCommunity}
               >

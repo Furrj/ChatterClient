@@ -12,7 +12,7 @@ import RegisterPage from "./views/RegisterPage";
 import HomePage from "./views/HomePage";
 import MainFeed from "./views/MainFeed";
 import ProfilePage from "./views/ProfilePage";
-import CommunitiesPage from "./views/CommunitiesPage";
+import Community from "./views/Community";
 
 //UTILS
 import generateGuestName from "./utils/generateGuestName";
@@ -138,9 +138,9 @@ const App: React.FC = () => {
           />
           <Route path="/profile" element={<ProfilePage />} />
           <Route
-            path="/communities/*"
+            path="/communities/:com"
             element={
-              <CommunitiesPage
+              <Community
                 userInfo={userInfo}
                 darkMode={darkMode}
                 data={posts}
