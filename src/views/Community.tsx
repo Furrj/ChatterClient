@@ -8,6 +8,7 @@ import Post from "../components/Post";
 import NewPost from "../components/NewPost";
 import AddNewPost from "../components/AddNewPost";
 import PolicyBox from "../components/PolicyBox";
+import CommunityPanel from "../components/CommunityPanel";
 
 //TS
 import { IUser } from "../App";
@@ -30,8 +31,6 @@ const Community: React.FC<IProps> = ({
   const [mobile, setMobile] = useState<boolean>(false);
 
   let { com } = useParams();
-
-  console.log(com);
 
   let colorMode: string = darkMode ? "" : "cardLightMode";
   let linkColorMode: string = darkMode ? "" : "linkLightMode";
@@ -59,9 +58,7 @@ const Community: React.FC<IProps> = ({
     setRerender(!rerender);
   };
 
-  const presortedContent: IPost[] = data.filter(
-    (p) => p.community === com
-  );
+  const presortedContent: IPost[] = data.filter((p) => p.community === com);
 
   const content: JSX.Element[] = presortedContent.map((p) => {
     return <Post key={p.id} data={p} darkMode={darkMode} />;
@@ -71,10 +68,12 @@ const Community: React.FC<IProps> = ({
     <div className={styles.feedCont}>
       {!mobile && (
         <div className={styles.leftPanel}>
+          <CommunityPanel community={com} />
           <NewPost
             userInfo={userInfo}
             fetchAgain={fetchAgain}
             darkMode={darkMode}
+            communityMode={true}
           />
           <PolicyBox darkMode={darkMode} />
         </div>

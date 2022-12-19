@@ -10,6 +10,7 @@ interface IProps {
   userInfo: IUser;
   fetchAgain: () => void;
   darkMode: boolean;
+  communityMode: boolean;
 }
 
 interface IState {
@@ -30,7 +31,12 @@ const initState: IState = {
   community: "All",
 };
 
-const NewPost: React.FC<IProps> = ({ userInfo, fetchAgain, darkMode }) => {
+const NewPost: React.FC<IProps> = ({
+  userInfo,
+  fetchAgain,
+  darkMode,
+  communityMode,
+}) => {
   const [postInfo, setPostInfo] = useState<IState>(initState);
 
   let colorMode: string = darkMode ? "" : "cardLightMode";
@@ -90,22 +96,26 @@ const NewPost: React.FC<IProps> = ({ userInfo, fetchAgain, darkMode }) => {
           value={postInfo.text}
         ></textarea>
         <hr className={styles.belowInput} />
-        <div>Community: </div>
-        <select
-          name="community"
-          id="community"
-          value={postInfo.community}
-          onChange={inputHandler}
-        >
-          <option value="All">All</option>
-          <option value="Sports">Sports</option>
-          <option value="Politics">Politics</option>
-          <option value="Music">Music</option>
-          <option value="News">News</option>
-          <option value="Movies">Movies</option>
-          <option value="Tech">Tech</option>
-        </select>
-        <hr />
+        {!communityMode && (
+          <div>
+            <div>Community: </div>
+            <select
+              name="community"
+              id="community"
+              value={postInfo.community}
+              onChange={inputHandler}
+            >
+              <option value="All">All</option>
+              <option value="Sports">Sports</option>
+              <option value="Politics">Politics</option>
+              <option value="Music">Music</option>
+              <option value="News">News</option>
+              <option value="Movies">Movies</option>
+              <option value="Tech">Tech</option>
+            </select>
+            <hr />
+          </div>
+        )}
       </div>
       <button
         className={`btn btn-info ${styles.submitButton}`}

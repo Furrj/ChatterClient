@@ -64,8 +64,8 @@ const Post: React.FC<IProps> = ({ data, darkMode }) => {
           <span className={styles.username}>{data.user}</span>
           <span className={styles.community}>/{data.community}</span>
           <span className={styles.date}>{data.date}</span>
-          <hr />
         </div>
+        <hr />
         <div>{data.text}</div>
       </div>
     </div>
