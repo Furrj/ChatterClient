@@ -1,0 +1,38 @@
+hr {
+  margin: 0px;
+}
+
+.mainCont {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 50px 1fr;
+}
+
+.mainCard {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.infoBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid grey;
+  box-sizing: border-box;
+}
+
+.infoBoxLeft {
+  border-right: 1px solid grey;
+  box-sizing: border-box;
+}
+
+.activityBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid grey;
+  box-sizing: border-box;
+}
+
+.activityBoxLeft {
+  border-right: 1px solid grey;
+  box-sizing: border-box;
+}

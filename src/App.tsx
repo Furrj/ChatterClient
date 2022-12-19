@@ -39,6 +39,13 @@ const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState<boolean>(true);
   const [posts, setPosts] = useState<IPost[]>([]);
 
+  //CHECK IF LOGGED IN AND GENERATE GUESTNAME
+  useEffect(() => {
+    if (userInfo.valid === false) {
+      userInfo.username = generateGuestName();
+    }
+  }, []);
+
   //DATA
   const fetchData = async (): Promise<void> => {
     try {
@@ -77,12 +84,6 @@ const App: React.FC = () => {
       console.log(`Error: ${e}`);
     }
   };
-
-  useEffect(() => {
-    if (userInfo.valid === false) {
-      userInfo.username = generateGuestName();
-    }
-  }, []);
 
   const toggleColorMode = (): void => {
     setDarkMode(!darkMode);
@@ -136,7 +137,10 @@ const App: React.FC = () => {
               />
             }
           />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route
+            path="/profile"
+            element={<ProfilePage userInfo={userInfo} darkMode={darkMode} />}
+          />
           <Route
             path="/communities/:com"
             element={
