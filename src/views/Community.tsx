@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import styles from "./MainFeed.module.css";
+import { Link, useParams } from "react-router-dom";
+import styles from "./Community.module.css";
 import toggleMode from "../utils/toggleColorMode";
 
 //COMPS
@@ -11,6 +11,7 @@ import PolicyBox from "../components/PolicyBox";
 
 //TS
 import { IUser } from "../App";
+import { IPost } from "./MainFeed";
 
 interface IProps {
   userInfo: IUser;
@@ -19,18 +20,7 @@ interface IProps {
   fetchData: () => void;
 }
 
-export interface IPost {
-  id: string;
-  text: string;
-  date: string;
-  community: string;
-  likes: number;
-  dislikes: number;
-  user?: any;
-  guestAuthor?: string;
-}
-
-const MainFeed: React.FC<IProps> = ({
+const Community: React.FC<IProps> = ({
   userInfo,
   darkMode,
   data,
@@ -38,6 +28,10 @@ const MainFeed: React.FC<IProps> = ({
 }) => {
   const [rerender, setRerender] = useState<boolean>(false);
   const [mobile, setMobile] = useState<boolean>(false);
+
+  let { com } = useParams();
+
+  console.log(com);
 
   let colorMode: string = darkMode ? "" : "cardLightMode";
   let linkColorMode: string = darkMode ? "" : "linkLightMode";
@@ -65,7 +59,11 @@ const MainFeed: React.FC<IProps> = ({
     setRerender(!rerender);
   };
 
-  const content: JSX.Element[] = data.map((p) => {
+  const presortedContent: IPost[] = data.filter(
+    (p) => p.community === com
+  );
+
+  const content: JSX.Element[] = presortedContent.map((p) => {
     return <Post key={p.id} data={p} darkMode={darkMode} />;
   });
 
@@ -171,4 +169,4 @@ const MainFeed: React.FC<IProps> = ({
   );
 };
 
-export default MainFeed;
+export default Community;
