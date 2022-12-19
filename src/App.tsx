@@ -17,13 +17,16 @@ import CommunitiesPage from "./views/CommunitiesPage";
 //UTILS
 import generateGuestName from "./utils/generateGuestName";
 
-//STATE
+//TS
+import { IPost } from "./views/MainFeed";
+
 export type IUser = {
   username: string;
   id: string;
   valid: boolean;
 };
 
+//STATE
 export const initState = {
   username: "",
   id: "",
@@ -34,6 +37,46 @@ const App: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [userInfo, setUserInfo] = useState<IUser>(initState);
   const [darkMode, setDarkMode] = useState<boolean>(true);
+  const [posts, setPosts] = useState<IPost[]>([]);
+
+  //DATA
+  const fetchData = async (): Promise<void> => {
+    try {
+      const res = await fetch("http://localhost:5000/api");
+
+      const rawData = await res.json();
+      const newState: IPost[] = [];
+      for (let d of rawData) {
+        if (!d.guestAuthor) {
+          const newPost: IPost = {
+            id: d._id,
+            text: d.text,
+            community: d.community,
+            date: d.date,
+            likes: d.likes,
+            dislikes: d.dislikes,
+            user: d.author.username,
+          };
+          newState.push(newPost);
+        } else {
+          const newPost: IPost = {
+            id: d._id,
+            text: d.text,
+            date: d.date,
+            community: d.community,
+            likes: d.likes,
+            dislikes: d.dislikes,
+            user: d.guestAuthor,
+          };
+          newState.push(newPost);
+        }
+      }
+      newState.reverse();
+      setPosts(newState);
+    } catch (e) {
+      console.log(`Error: ${e}`);
+    }
+  };
 
   useEffect(() => {
     if (userInfo.valid === false) {
@@ -43,8 +86,8 @@ const App: React.FC = () => {
 
   const toggleColorMode = (): void => {
     setDarkMode(!darkMode);
-  }
-  
+  };
+
   toggleMode(darkMode);
 
   return (
@@ -82,9 +125,29 @@ const App: React.FC = () => {
               />
             }
           />
-          <Route path="/mainfeed" element={<MainFeed userInfo={userInfo} darkMode={darkMode} />} />
+          <Route
+            path="/mainfeed"
+            element={
+              <MainFeed
+                userInfo={userInfo}
+                darkMode={darkMode}
+                data={posts}
+                fetchData={fetchData}
+              />
+            }
+          />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/communities/*" element={<CommunitiesPage />} />
+          <Route
+            path="/communities/*"
+            element={
+              <CommunitiesPage
+                userInfo={userInfo}
+                darkMode={darkMode}
+                data={posts}
+                fetchData={fetchData}
+              />
+            }
+          />
         </Routes>
         <div className="push" />
         <Footer />

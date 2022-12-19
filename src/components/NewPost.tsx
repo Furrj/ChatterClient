@@ -14,17 +14,20 @@ interface IProps {
 
 interface IState {
   text: string;
+  community: string;
 }
 
 interface IPostSend {
   text: string;
   date: string;
+  community: string;
   user?: string;
   guestAuthor?: string;
 }
 
 const initState: IState = {
   text: "",
+  community: "All",
 };
 
 const NewPost: React.FC<IProps> = ({ userInfo, fetchAgain, darkMode }) => {
@@ -35,13 +38,19 @@ const NewPost: React.FC<IProps> = ({ userInfo, fetchAgain, darkMode }) => {
 
   //HELPER FUNCTIONS
   const inputHandler = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     setPostInfo({ ...postInfo, [e.target.name]: e.target.value });
   };
 
   const submitPost = async (): Promise<void> => {
-    const newPost: IPostSend = { text: postInfo.text, date: getCurrentDate() };
+    const newPost: IPostSend = {
+      text: postInfo.text,
+      date: getCurrentDate(),
+      community: postInfo.community,
+    };
 
     if (userInfo.valid) {
       newPost.user = userInfo.id;
@@ -81,8 +90,30 @@ const NewPost: React.FC<IProps> = ({ userInfo, fetchAgain, darkMode }) => {
           value={postInfo.text}
         ></textarea>
         <hr className={styles.belowInput} />
+        <div>Community: </div>
+        <select
+          name="community"
+          id="community"
+          value={postInfo.community}
+          onChange={inputHandler}
+        >
+          <option value="All">All</option>
+          <option value="Sports">Sports</option>
+          <option value="Politics">Politics</option>
+          <option value="Music">Music</option>
+          <option value="Music">Music</option>
+          <option value="News">News</option>
+          <option value="Movies">Movies</option>
+          <option value="Tech">Tech</option>
+        </select>
+        <hr />
       </div>
-      <button className={`btn btn-info ${styles.submitButton}`} onClick={submitPost}>Submit</button>
+      <button
+        className={`btn btn-info ${styles.submitButton}`}
+        onClick={submitPost}
+      >
+        Submit
+      </button>
     </div>
   );
 };

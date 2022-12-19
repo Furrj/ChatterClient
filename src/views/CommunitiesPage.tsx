@@ -9,10 +9,36 @@ import NewsCom from "./Communities/NewsCom";
 import MoviesCom from "./Communities/MoviesCom";
 import TechCom from "./Communities/TechCom";
 
-const CommunitiesPage: React.FC = () => {
+//TS
+import { IPost } from "./MainFeed";
+import { IUser } from "../App";
+
+interface IProps {
+  userInfo: IUser;
+  darkMode: boolean;
+  data: IPost[];
+  fetchData: () => void;
+}
+
+const CommunitiesPage: React.FC<IProps> = ({
+  data,
+  userInfo,
+  darkMode,
+  fetchData,
+}) => {
   return (
     <Routes>
-      <Route path="/sports" element={<SportsCom />} />
+      <Route
+        path="/sports"
+        element={
+          <SportsCom
+            data={data}
+            userInfo={userInfo}
+            darkMode={darkMode}
+            fetchData={fetchData}
+          />
+        }
+      />
       <Route path="/pol" element={<PoliticsCom />} />
       <Route path="/music" element={<MusicCom />} />
       <Route path="news" element={<NewsCom />} />

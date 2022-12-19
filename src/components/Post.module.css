@@ -16,6 +16,11 @@
   margin-left: 5px;
 }
 
+.community {
+  position: absolute;
+  right: 50%;
+}
+
 .date {
   color: grey;
   position: absolute;
@@ -35,13 +40,13 @@
 }
 
 .cardLeft {
-  border-right: 1px solid black;
+  border-right: 1px solid grey;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
 }
 
 .like {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid grey;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +59,7 @@
 }
 
 .dislike {
-  border-top: 1px solid black;
+  border-top: 1px solid grey;
   display: flex;
   justify-content: center;
   align-items: center;
