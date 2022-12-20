@@ -78,6 +78,7 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode }) => {
         bio: profileInfo.bio,
       }),
     });
+    await res.json();
   };
 
   const postContent: JSX.Element[] = posts.map((post) => {
