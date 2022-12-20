@@ -25,9 +25,9 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode }) => {
   useEffect(() => {
     if (userInfo.valid === false) {
       navigate("/login");
+    } else {
+      fetchPosts();
     }
-
-    fetchPosts();
   }, []);
 
   const fetchPosts = async () => {
@@ -45,18 +45,19 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode }) => {
   const postContent: JSX.Element[] = posts.map((post) => {
     return (
       <div key={post._id}>
-        Text: {post.text}<br />
+        Text: {post.text}
+        <br />
         ID: {post._id}
         <hr />
       </div>
-    )
-  })
+    );
+  });
 
   return (
     <div className={styles.mainCont}>
       <div className={`card ${styles.mainCard} ${colorMode}`}>
         <h3>{userInfo.username}'s Profile</h3>
-        <hr />
+        <hr className={styles.hr} />
         <div className={styles.infoBox}>
           <div className={styles.infoBoxLeft}>
             <div>Name: </div>
