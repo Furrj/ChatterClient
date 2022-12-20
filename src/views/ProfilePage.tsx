@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import styles from "./ProfilePage.module.css";
 
+//COMPS
+import Post from "../components/Post";
+
 //TS
 import { IUser } from "../App";
 
@@ -10,13 +13,8 @@ interface IProps {
   darkMode: boolean;
 }
 
-interface userPost {
-  text: string;
-  _id: string;
-}
-
 const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode }) => {
-  const [posts, setPosts] = useState<userPost[]>([]);
+  const [posts, setPosts] = useState<any[]>([]);
 
   const navigate: NavigateFunction = useNavigate();
 
@@ -44,40 +42,51 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode }) => {
 
   const postContent: JSX.Element[] = posts.map((post) => {
     return (
-      <div key={post._id}>
-        Text: {post.text}
-        <br />
-        ID: {post._id}
-        <hr />
-      </div>
+      <Post
+        key={post._id}
+        darkMode={darkMode}
+        data={{
+          id: post._id,
+          text: post.text,
+          community: post.community,
+          likes: post.likes,
+          dislikes: post.dislikes,
+          date: post.date,
+        }}
+      />
     );
   });
 
   return (
     <div className={styles.mainCont}>
-      <div className={`card ${styles.mainCard} ${colorMode}`}>
-        <h3>{userInfo.username}'s Profile</h3>
-        <hr className={styles.hr} />
-        <div className={styles.infoBox}>
-          <div className={styles.infoBoxLeft}>
-            <div>Name: </div>
-            <div>Age: </div>
+      <div className={styles.leftCont}>
+        <div className={`card ${styles.profileCard} ${colorMode}`}>
+          <div>
+            <h3 className={styles.username}>{userInfo.username}'s Profile</h3>
           </div>
-          <div className={styles.infoBoxRight}>
-            <div>Bio: </div>
-            <br />
-          </div>
-        </div>
-        <div className={styles.activityBox}>
-          <div className={styles.activityBoxLeft}>
-            <div>Communities:</div>
-          </div>
-          <div className={styles.activityBoxRight}>
-            <div>Posts:</div>
-            <br />
-            <div>{postContent}</div>
+          <hr className={styles.hr} />
+          <div className={styles.leftCardLayout}>
+            <h4>Jackson Furr</h4>
+            <div>21</div>
+            <div>Male</div>
+            <div className={styles.bioCont}>
+              <div className={styles.bioBox}>Lorem</div>
+            </div>
+            <div>
+              <button className={styles.editButton}>Edit</button>
+            </div>
           </div>
         </div>
+        <div className={`card ${styles.comCard} ${colorMode}`}>
+          <h5>Communities</h5>
+          <div></div>
+        </div>
+      </div>
+      <div className={styles.rightCard}>
+        <div className={`card ${styles.postHistoryTitle} ${colorMode}`}>
+          <h3>Post History</h3>
+        </div>
+        <div>{postContent}</div>
       </div>
     </div>
   );

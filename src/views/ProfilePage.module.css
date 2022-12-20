@@ -1,38 +1,66 @@
 .mainCont {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 50px 1fr;
+  grid-template-columns: 50px 1fr 1fr 3fr 50px;
+  margin-top: 30px;
 }
 
-.mainCard {
+.leftCont {
   grid-column: 2;
-  grid-row: 2;
+  overflow: hidden;
 }
 
-.infoBox {
+.bioCont {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-bottom: 1px solid grey;
-  box-sizing: border-box;
+  grid-template-columns: 1fr 10fr 1fr;
 }
 
-.infoBoxLeft {
-  border-right: 1px solid grey;
-  box-sizing: border-box;
+.bioBox {
+  border: 1px solid grey;
+  grid-column: 2;
+  margin-top: 10px;
+  height: 200px;
 }
 
-.activityBox {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-bottom: 1px solid grey;
-  box-sizing: border-box;
+.topLeftCard {
+  grid-column: 2;
 }
 
-.activityBoxLeft {
-  border-right: 1px solid grey;
-  box-sizing: border-box;
+.rightCard {
+  grid-column: 4;
 }
 
 .hr {
-  margin: 0px;
+  margin: 10px;
+}
+
+.username {
+  margin-top: 10px;
+}
+
+.editButton {
+  font-size: x-small;
+  width: 50px;
+  height: 20px;
+  border-radius: 10px;
+  margin-bottom: 3px;
+}
+
+.editButton:hover {
+  background: rgb(2, 160, 160);
+}
+
+.communitiesBox {
+  margin-bottom: 10px;
+  padding-top: 5px;
+}
+
+.profileCard {
+  margin-bottom: 10px;
+  min-height: 300px;
+  overflow: hidden;
+  height: 400px;
+}
+
+.comCard {
+  min-height: 50px;
 }
