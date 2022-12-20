@@ -64,3 +64,8 @@
 .comCard {
   min-height: 50px;
 }
+
+.textArea {
+  width: 100%;
+  height: 100%;
+}

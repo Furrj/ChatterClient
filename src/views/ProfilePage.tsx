@@ -13,8 +13,25 @@ interface IProps {
   darkMode: boolean;
 }
 
+interface IProfileInfo {
+  name: string | undefined;
+  age: number | undefined;
+  gender: string | undefined;
+  bio: string | undefined;
+}
+
+const initProfileInfoState = {
+  name: "",
+  age: undefined,
+  gender: "",
+  bio: "",
+};
+
 const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode }) => {
   const [posts, setPosts] = useState<any[]>([]);
+  const [editMode, setEditMode] = useState<boolean>(false);
+  const [profileInfo, setProfileInfo] =
+    useState<IProfileInfo>(initProfileInfoState);
 
   const navigate: NavigateFunction = useNavigate();
 
@@ -24,11 +41,12 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode }) => {
     if (userInfo.valid === false) {
       navigate("/login");
     } else {
-      fetchPosts();
+      fetchUserData();
     }
   }, []);
 
-  const fetchPosts = async () => {
+  //HELPER FUNCTIONS
+  const fetchUserData = async () => {
     const res = await fetch("http://localhost:5000/api/user", {
       method: "PUT",
       headers: {
@@ -37,7 +55,29 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode }) => {
       body: JSON.stringify({ id: userInfo.id }),
     });
     const rawData = await res.json();
-    setPosts(rawData);
+    setPosts(rawData.posts);
+    setProfileInfo({
+      name: rawData.name,
+      age: rawData.age,
+      gender: rawData.gender,
+      bio: rawData.bio,
+    });
+  };
+
+  const submitInfo = async () => {
+    const res = await fetch("http://localhost:5000/api/user/update", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: userInfo.id,
+        name: profileInfo.name,
+        age: profileInfo.age,
+        gender: profileInfo.gender,
+        bio: profileInfo.bio,
+      }),
+    });
   };
 
   const postContent: JSX.Element[] = posts.map((post) => {
@@ -57,6 +97,15 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode }) => {
     );
   });
 
+  const inputHandler = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setProfileInfo({
+      ...profileInfo,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <div className={styles.mainCont}>
       <div className={styles.leftCont}>
@@ -66,14 +115,71 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode }) => {
           </div>
           <hr className={styles.hr} />
           <div className={styles.leftCardLayout}>
-            <h4>Jackson Furr</h4>
-            <div>21</div>
-            <div>Male</div>
+            {editMode ? (
+              <input
+                type="text"
+                name="name"
+                value={profileInfo.name}
+                onChange={inputHandler}
+              />
+            ) : (
+              <h4>{profileInfo.name}</h4>
+            )}
+            {editMode ? (
+              <input
+                type="number"
+                name="age"
+                value={profileInfo.age}
+                onChange={inputHandler}
+              />
+            ) : (
+              <div>{profileInfo.age}</div>
+            )}
+            {editMode ? (
+              <input
+                type="text"
+                name="gender"
+                value={profileInfo.gender}
+                onChange={inputHandler}
+              />
+            ) : (
+              <div>{profileInfo.gender}</div>
+            )}
             <div className={styles.bioCont}>
-              <div className={styles.bioBox}>Lorem</div>
+              <div className={styles.bioBox}>
+                {editMode ? (
+                  <textarea
+                    name="bio"
+                    onChange={inputHandler}
+                    value={profileInfo.bio}
+                    className={styles.textArea}
+                  ></textarea>
+                ) : (
+                  <div>{profileInfo.bio}</div>
+                )}
+              </div>
             </div>
             <div>
-              <button className={styles.editButton}>Edit</button>
+              {editMode ? (
+                <button
+                  className={styles.editButton}
+                  onClick={() => {
+                    setEditMode(!editMode);
+                    submitInfo();
+                  }}
+                >
+                  Submit
+                </button>
+              ) : (
+                <button
+                  className={styles.editButton}
+                  onClick={() => {
+                    setEditMode(!editMode);
+                  }}
+                >
+                  Edit
+                </button>
+              )}
             </div>
           </div>
         </div>
