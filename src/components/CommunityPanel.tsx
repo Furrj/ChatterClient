@@ -1,13 +1,18 @@
 import React, { useEffect } from "react";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import styles from "./CommunityPanel.module.css";
-import { copyFile } from "fs";
 
 //TS
+import { IUser } from "../App";
+
 interface IProps {
   community: string | undefined;
+  userInfo: IUser;
 }
 
-const CommunityPanel: React.FC<IProps> = ({ community }) => {
+const CommunityPanel: React.FC<IProps> = ({ community, userInfo }) => {
+  const navigate: NavigateFunction = useNavigate();
+
   var icon: JSX.Element | undefined;
 
   switch (community) {
@@ -30,10 +35,35 @@ const CommunityPanel: React.FC<IProps> = ({ community }) => {
       icon = <i className="fa-solid fa-microchip fa-2xl" />;
       break;
   }
+
+  const subscribeToCommunity = async (
+    e: React.MouseEvent<HTMLDivElement>
+  ): Promise<void> => {
+    try {
+      const res = await fetch("http://localhost:5000/api/user/communities", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: userInfo.id, community }),
+      });
+      await res.json();
+    } catch (e) {
+      console.log(`Error: ${e}`);
+    }
+  };
+
   return (
     <div className={`card ${styles.panel}`}>
       <div className={styles.icon}>{icon}</div>
       <div>Welcome to /{community}!</div>
+      {userInfo.valid ? (
+        <div className={styles.subButton} onClick={subscribeToCommunity}>
+          Subscribe
+        </div>
+      ) : (
+        <div className={styles.subButton} onClick={() => navigate("/login")}>Login to Suscribe</div>
+      )}
     </div>
   );
 };

@@ -68,7 +68,7 @@ const Community: React.FC<IProps> = ({
     <div className={styles.feedCont}>
       {!mobile && (
         <div className={styles.leftPanel}>
-          <CommunityPanel community={com} />
+          <CommunityPanel community={com} userInfo={userInfo} />
           <NewPost
             userInfo={userInfo}
             fetchAgain={fetchAgain}
@@ -81,6 +81,7 @@ const Community: React.FC<IProps> = ({
       <div className={styles.postCol}>
         {mobile && (
           <div>
+            <CommunityPanel community={com} userInfo={userInfo} />
             <AddNewPost
               userInfo={userInfo}
               fetchAgain={fetchAgain}
