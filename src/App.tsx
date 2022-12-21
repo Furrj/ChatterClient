@@ -139,7 +139,13 @@ const App: React.FC = () => {
           />
           <Route
             path="/profile"
-            element={<ProfilePage userInfo={userInfo} darkMode={darkMode} />}
+            element={
+              <ProfilePage
+                userInfo={userInfo}
+                darkMode={darkMode}
+                fetchData={fetchData}
+              />
+            }
           />
           <Route
             path="/communities/:com"

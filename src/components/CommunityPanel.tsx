@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import styles from "./CommunityPanel.module.css";
 

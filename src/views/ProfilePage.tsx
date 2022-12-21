@@ -11,6 +11,7 @@ import { IUser } from "../App";
 interface IProps {
   userInfo: IUser;
   darkMode: boolean;
+  fetchData: () => void;
 }
 
 interface IProfileInfo {
@@ -27,7 +28,7 @@ const initProfileInfoState = {
   bio: "",
 };
 
-const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode }) => {
+const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode, fetchData }) => {
   const [posts, setPosts] = useState<any[]>([]);
   const [editMode, setEditMode] = useState<boolean>(false);
   const [profileInfo, setProfileInfo] =
@@ -93,7 +94,10 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode }) => {
           likes: post.likes,
           dislikes: post.dislikes,
           date: post.date,
+          user: userInfo.username,
         }}
+        userInfo={userInfo}
+        fetchData={fetchUserData}
       />
     );
   });

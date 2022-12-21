@@ -1,18 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Post.module.css";
 
+//TS
 import { IPost } from "../views/MainFeed";
+import { IUser } from "../App";
 
 interface IProps {
   data: IPost;
   darkMode: boolean;
+  userInfo: IUser;
+  fetchData: () => void;
 }
 
-const Post: React.FC<IProps> = ({ data, darkMode }) => {
+const Post: React.FC<IProps> = ({ data, darkMode, userInfo, fetchData }) => {
   const [points, setPoints] = useState<number>(data.likes - data.dislikes);
+  const [owned, setOwned] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (data.user === userInfo.username && userInfo.valid) {
+      setOwned(true);
+    }
+  }, []);
 
   let colorMode: string = darkMode ? "" : "cardLightMode";
 
+  //HELPER FUNCTIONS
   const upvote = async (e: React.MouseEvent<HTMLDivElement>): Promise<void> => {
     setPoints((points) => points + 1);
     try {
@@ -48,6 +60,24 @@ const Post: React.FC<IProps> = ({ data, darkMode }) => {
     }
   };
 
+  const deletePost = async (
+    e: React.MouseEvent<HTMLButtonElement>
+  ): Promise<void> => {
+    try {
+      const res = await fetch("http://localhost:5000/api/deletePost", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userID: userInfo.id, postID: data.id }),
+      });
+      await res.json();
+      fetchData();
+    } catch (e) {
+      console.log(`Error: ${e}`);
+    }
+  };
+
   return (
     <div className={`card ${styles.postCard} ${colorMode}`}>
       <div className={styles.cardLeft}>
@@ -67,6 +97,14 @@ const Post: React.FC<IProps> = ({ data, darkMode }) => {
         </div>
         <hr />
         <div>{data.text}</div>
+        {owned && (
+          <div>
+            <hr />
+            <button className={styles.deleteButton} onClick={deletePost}>
+              Delete
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

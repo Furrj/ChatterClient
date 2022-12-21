@@ -66,7 +66,7 @@ const MainFeed: React.FC<IProps> = ({
   };
 
   const content: JSX.Element[] = data.map((p) => {
-    return <Post key={p.id} data={p} darkMode={darkMode} />;
+    return <Post key={p.id} data={p} darkMode={darkMode} userInfo={userInfo} fetchData={fetchData} />;
   });
 
   return (

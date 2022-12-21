@@ -61,7 +61,15 @@ const Community: React.FC<IProps> = ({
   const presortedContent: IPost[] = data.filter((p) => p.community === com);
 
   const content: JSX.Element[] = presortedContent.map((p) => {
-    return <Post key={p.id} data={p} darkMode={darkMode} />;
+    return (
+      <Post
+        key={p.id}
+        data={p}
+        darkMode={darkMode}
+        userInfo={userInfo}
+        fetchData={fetchData}
+      />
+    );
   });
 
   return (
