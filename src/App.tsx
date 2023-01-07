@@ -103,7 +103,17 @@ const App: React.FC = () => {
         />
         <div className="push" />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/"
+            element={
+              <MainFeed
+                userInfo={userInfo}
+                darkMode={darkMode}
+                data={posts}
+                fetchData={fetchData}
+              />
+            }
+          />
           <Route
             path="/login"
             element={
