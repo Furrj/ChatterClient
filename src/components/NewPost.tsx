@@ -11,6 +11,7 @@ interface IProps {
   fetchAgain: () => void;
   darkMode: boolean;
   communityMode: boolean;
+  currentCommunity: string | undefined;
 }
 
 interface IState {
@@ -21,7 +22,7 @@ interface IState {
 interface IPostSend {
   text: string;
   date: string;
-  community: string;
+  community: string | undefined;
   user?: string;
   guestAuthor?: string;
 }
@@ -36,6 +37,7 @@ const NewPost: React.FC<IProps> = ({
   fetchAgain,
   darkMode,
   communityMode,
+  currentCommunity,
 }) => {
   const [postInfo, setPostInfo] = useState<IState>(initState);
 
@@ -57,6 +59,10 @@ const NewPost: React.FC<IProps> = ({
       date: getCurrentDate(),
       community: postInfo.community.toLowerCase(),
     };
+
+    if (communityMode === true) {
+      newPost.community = currentCommunity;
+    }
 
     if (userInfo.valid) {
       newPost.user = userInfo.id;

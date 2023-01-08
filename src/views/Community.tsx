@@ -82,6 +82,7 @@ const Community: React.FC<IProps> = ({
             fetchAgain={fetchAgain}
             darkMode={darkMode}
             communityMode={true}
+            currentCommunity={com}
           />
           <PolicyBox darkMode={darkMode} />
         </div>

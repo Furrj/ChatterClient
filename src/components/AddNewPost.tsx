@@ -27,6 +27,7 @@ const AddNewPost: React.FC<IProps> = ({ userInfo, fetchAgain, darkMode }) => {
           fetchAgain={fetchAgain}
           darkMode={darkMode}
           communityMode={false}
+          currentCommunity={undefined}
         />
       ) : (
         "Add Post"

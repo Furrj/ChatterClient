@@ -78,6 +78,7 @@ const MainFeed: React.FC<IProps> = ({
             fetchAgain={fetchAgain}
             darkMode={darkMode}
             communityMode={false}
+            currentCommunity={undefined}
           />
           <PolicyBox darkMode={darkMode} />
         </div>
