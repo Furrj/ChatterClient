@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import toggleMode from "./utils/toggleColorMode";
+import { reqRoutes } from "./utils/reqRoutes";
 
 //UI
 import Footer from "./layouts/Footer";
@@ -49,7 +50,7 @@ const App: React.FC = () => {
   //DATA
   const fetchData = async (): Promise<void> => {
     try {
-      const res = await fetch("http://localhost:5000/api");
+      const res = await fetch(`${reqRoutes()}/api`);
 
       const rawData = await res.json();
       const newState: IPost[] = [];

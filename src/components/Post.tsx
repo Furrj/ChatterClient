@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Post.module.css";
+import { reqRoutes } from "../utils/reqRoutes";
 
 //TS
 import { IPost } from "../views/MainFeed";
@@ -28,7 +29,7 @@ const Post: React.FC<IProps> = ({ data, darkMode, userInfo, fetchData }) => {
   const upvote = async (e: React.MouseEvent<HTMLDivElement>): Promise<void> => {
     setPoints((points) => points + 1);
     try {
-      const res = await fetch("http://localhost:5000/api/update", {
+      const res = await fetch(`${reqRoutes()}/api/update`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -46,7 +47,7 @@ const Post: React.FC<IProps> = ({ data, darkMode, userInfo, fetchData }) => {
   ): Promise<void> => {
     setPoints((points) => points - 1);
     try {
-      const res = await fetch("http://localhost:5000/api/update", {
+      const res = await fetch(`${reqRoutes()}/api/update`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -64,7 +65,7 @@ const Post: React.FC<IProps> = ({ data, darkMode, userInfo, fetchData }) => {
     e: React.MouseEvent<HTMLButtonElement>
   ): Promise<void> => {
     try {
-      const res = await fetch("http://localhost:5000/api/deletePost", {
+      const res = await fetch(`${reqRoutes()}/api/deletePost`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

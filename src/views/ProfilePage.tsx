@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import styles from "./ProfilePage.module.css";
+import { reqRoutes } from "../utils/reqRoutes";
 
 //COMPS
 import Post from "../components/Post";
@@ -48,7 +49,7 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode, fetchData }) => {
 
   //HELPER FUNCTIONS
   const fetchUserData = async () => {
-    const res = await fetch("http://localhost:5000/api/user", {
+    const res = await fetch(`${reqRoutes()}/api/user`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +67,7 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode, fetchData }) => {
   };
 
   const submitInfo = async () => {
-    const res = await fetch("http://localhost:5000/api/user/update", {
+    const res = await fetch(`${reqRoutes()}/api/user/update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
