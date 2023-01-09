@@ -1,6 +1,7 @@
 import React from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import styles from "./CommunityPanel.module.css";
+import { reqRoutes } from "../utils/reqRoutes";
 
 //TS
 import { IUser } from "../App";
@@ -40,7 +41,7 @@ const CommunityPanel: React.FC<IProps> = ({ community, userInfo }) => {
     e: React.MouseEvent<HTMLDivElement>
   ): Promise<void> => {
     try {
-      const res = await fetch("http://localhost:5000/api/user/communities", {
+      const res = await fetch(`${reqRoutes()}/api/user/communities`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

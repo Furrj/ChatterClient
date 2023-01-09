@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./NewPost.module.css";
+import { reqRoutes } from "../utils/reqRoutes";
 
 //UTILS
 import getCurrentDate from "../utils/getDate";
@@ -71,7 +72,7 @@ const NewPost: React.FC<IProps> = ({
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/newPost", {
+      const res = await fetch(`${reqRoutes()}/api/newPost`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import styles from "./RegisterPage.module.css";
+import { reqRoutes } from "../utils/reqRoutes";
 
 //TS
 import { IUser } from "../App";
@@ -29,7 +30,7 @@ const RegisterPage: React.FC<IProps> = ({
   setLoggedIn,
   userInfo,
   setUserInfo,
-  darkMode
+  darkMode,
 }) => {
   const [userInput, setUserInuput] = useState<IState>(initState);
   const [taken, setTaken] = useState<boolean>(false);
@@ -54,7 +55,7 @@ const RegisterPage: React.FC<IProps> = ({
   const register = async (
     e: React.MouseEvent<HTMLButtonElement>
   ): Promise<void> => {
-    const res = await fetch("http://localhost:5000/register", {
+    const res = await fetch(`${reqRoutes()}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
