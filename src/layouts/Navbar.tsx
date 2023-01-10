@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { initState } from "../App";
+import { reqRoutes } from "../utils/reqRoutes";
 
 //TS
 import { IUser } from "../App";
@@ -21,9 +22,14 @@ const Navbar: React.FC<IProps> = ({
   darkMode,
   toggleColorMode,
 }) => {
-  const logout = (e: React.MouseEvent<HTMLAnchorElement>): void => {
+  const logout = async (e: React.MouseEvent<HTMLAnchorElement>): Promise<void> => {
     setLoggedIn(false);
     setUserInfo(initState);
+
+    const req = await fetch(`${reqRoutes()}/logout`, {
+      credentials: "include",
+    });
+    const res = await req.json();
   };
 
   return (

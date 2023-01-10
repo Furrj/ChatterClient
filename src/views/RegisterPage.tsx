@@ -175,6 +175,17 @@ const RegisterPage: React.FC<IProps> = ({
         <button className="btn btn-primary" onClick={register}>
           Register
         </button>
+        <button
+          onClick={async () => {
+            const req = await fetch(`${reqRoutes()}/validate`, {
+              credentials: "include",
+            });
+            const res = await req.json();
+            console.log(res);
+          }}
+        >
+          sendReq
+        </button>
       </div>
     </div>
   );
