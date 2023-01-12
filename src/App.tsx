@@ -35,17 +35,26 @@ export const initState = {
 };
 
 const App: React.FC = () => {
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [userInfo, setUserInfo] = useState<IUser>(initState);
   const [darkMode, setDarkMode] = useState<boolean>(true);
   const [posts, setPosts] = useState<IPost[]>([]);
 
   //CHECK IF LOGGED IN AND GENERATE GUESTNAME
   useEffect(() => {
+    userValidation();
     if (userInfo.valid === false) {
       userInfo.username = generateGuestName();
     }
   }, []);
+
+  //CHECK USER INFO
+  const userValidation = async () => {
+    const req = await fetch(`${reqRoutes()}/validate`, {
+      credentials: "include",
+    });
+    const res = await req.json();
+    setUserInfo(res);
+  };
 
   //DATA
   const fetchData = async (): Promise<void> => {
@@ -96,10 +105,8 @@ const App: React.FC = () => {
     <BrowserRouter>
       <div>
         <Navbar
-          loggedIn={loggedIn}
+          loggedIn={userInfo.valid}
           setUserInfo={setUserInfo}
-          setLoggedIn={setLoggedIn}
-          darkMode={darkMode}
           toggleColorMode={toggleColorMode}
         />
         <div className="push" />
@@ -119,7 +126,6 @@ const App: React.FC = () => {
             path="/login"
             element={
               <LoginPage
-                setLoggedIn={setLoggedIn}
                 userInfo={userInfo}
                 setUserInfo={setUserInfo}
                 darkMode={darkMode}
@@ -130,7 +136,6 @@ const App: React.FC = () => {
             path="/register"
             element={
               <RegisterPage
-                setLoggedIn={setLoggedIn}
                 userInfo={userInfo}
                 setUserInfo={setUserInfo}
                 darkMode={darkMode}

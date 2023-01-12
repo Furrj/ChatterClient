@@ -20,14 +20,12 @@ const initState: IState = {
 
 //PROPS
 interface IProps {
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
   userInfo: IUser;
   setUserInfo: React.Dispatch<React.SetStateAction<IUser>>;
   darkMode: boolean;
 }
 
 const RegisterPage: React.FC<IProps> = ({
-  setLoggedIn,
   userInfo,
   setUserInfo,
   darkMode,
@@ -67,7 +65,6 @@ const RegisterPage: React.FC<IProps> = ({
       setTaken(true);
     } else {
       setTaken(false);
-      setLoggedIn(true);
       setUserInfo(data);
       return navigate("/");
     }
@@ -174,17 +171,6 @@ const RegisterPage: React.FC<IProps> = ({
         )}
         <button className="btn btn-primary" onClick={register}>
           Register
-        </button>
-        <button
-          onClick={async () => {
-            const req = await fetch(`${reqRoutes()}/validate`, {
-              credentials: "include",
-            });
-            const res = await req.json();
-            console.log(res);
-          }}
-        >
-          sendReq
         </button>
       </div>
     </div>

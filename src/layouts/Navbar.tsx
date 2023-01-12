@@ -10,20 +10,15 @@ import { IUser } from "../App";
 interface IProps {
   loggedIn: boolean;
   setUserInfo: React.Dispatch<React.SetStateAction<IUser>>;
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-  darkMode: boolean;
   toggleColorMode: () => void;
 }
 
 const Navbar: React.FC<IProps> = ({
   loggedIn,
   setUserInfo,
-  setLoggedIn,
-  darkMode,
   toggleColorMode,
 }) => {
   const logout = async (e: React.MouseEvent<HTMLAnchorElement>): Promise<void> => {
-    setLoggedIn(false);
     setUserInfo(initState);
 
     const req = await fetch(`${reqRoutes()}/logout`, {
