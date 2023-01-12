@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { initState } from "../App";
+import { reqRoutes } from "../utils/reqRoutes";
 
 //TS
 import { IUser } from "../App";
@@ -9,21 +10,21 @@ import { IUser } from "../App";
 interface IProps {
   loggedIn: boolean;
   setUserInfo: React.Dispatch<React.SetStateAction<IUser>>;
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-  darkMode: boolean;
   toggleColorMode: () => void;
 }
 
 const Navbar: React.FC<IProps> = ({
   loggedIn,
   setUserInfo,
-  setLoggedIn,
-  darkMode,
   toggleColorMode,
 }) => {
-  const logout = (e: React.MouseEvent<HTMLAnchorElement>): void => {
-    setLoggedIn(false);
+  const logout = async (e: React.MouseEvent<HTMLAnchorElement>): Promise<void> => {
     setUserInfo(initState);
+
+    const req = await fetch(`${reqRoutes()}/logout`, {
+      credentials: "include",
+    });
+    const res = await req.json();
   };
 
   return (

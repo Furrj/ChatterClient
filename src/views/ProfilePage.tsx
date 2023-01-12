@@ -127,6 +127,7 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode, fetchData }) => {
                 name="name"
                 value={profileInfo.name}
                 onChange={inputHandler}
+                placeholder="name"
               />
             ) : (
               <h4>{profileInfo.name}</h4>
@@ -137,6 +138,7 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode, fetchData }) => {
                 name="age"
                 value={profileInfo.age}
                 onChange={inputHandler}
+                placeholder="age"
               />
             ) : (
               <div>{profileInfo.age}</div>
@@ -147,6 +149,7 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode, fetchData }) => {
                 name="gender"
                 value={profileInfo.gender}
                 onChange={inputHandler}
+                placeholder="gender"
               />
             ) : (
               <div>{profileInfo.gender}</div>
@@ -159,6 +162,7 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode, fetchData }) => {
                     onChange={inputHandler}
                     value={profileInfo.bio}
                     className={styles.textArea}
+                    placeholder="about"
                   ></textarea>
                 ) : (
                   <div>{profileInfo.bio}</div>
