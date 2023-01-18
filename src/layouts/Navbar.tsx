@@ -1,28 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
-import { initState } from "../App";
 import { reqRoutes } from "../utils/reqRoutes";
-
-//TS
-import { IUser } from "../App";
 
 interface IProps {
   loggedIn: boolean;
-  setUserInfo: React.Dispatch<React.SetStateAction<IUser>>;
   toggleColorMode: () => void;
+  userValidation: () => Promise<void>;
 }
 
 const Navbar: React.FC<IProps> = ({
   loggedIn,
-  setUserInfo,
   toggleColorMode,
+  userValidation
 }) => {
-  const logout = async (e: React.MouseEvent<HTMLAnchorElement>): Promise<void> => {
+  const logout = async (
+    e: React.MouseEvent<HTMLAnchorElement>
+  ): Promise<void> => {
     const req = await fetch(`${reqRoutes()}/logout`, {
       credentials: "include",
     });
     const res = await req.json();
+    userValidation();
   };
 
   return (
@@ -42,11 +41,6 @@ const Navbar: React.FC<IProps> = ({
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link btn" to="/">
-                Home
-              </Link>
-            </li>
             <li className="nav-item">
               <Link className="nav-link btn" to="/mainfeed">
                 Main Feed

@@ -10,7 +10,6 @@ import Navbar from "./layouts/Navbar";
 //VIEWS
 import LoginPage from "./views/LoginPage";
 import RegisterPage from "./views/RegisterPage";
-import HomePage from "./views/HomePage";
 import MainFeed from "./views/MainFeed";
 import ProfilePage from "./views/ProfilePage";
 import Community from "./views/Community";
@@ -29,7 +28,7 @@ export type IUser = {
 
 //STATE
 export const initState = {
-  username: "",
+  username: generateGuestName(),
   id: "",
   valid: false,
 };
@@ -42,18 +41,21 @@ const App: React.FC = () => {
   //CHECK IF LOGGED IN AND GENERATE GUESTNAME
   useEffect(() => {
     userValidation();
-    if (userInfo.valid === false) {
-      userInfo.username = generateGuestName();
-    }
   }, []);
 
   //CHECK USER INFO
-  const userValidation = async () => {
+  const userValidation = async (): Promise<void> => {
     const req = await fetch(`${reqRoutes()}/validate`, {
+      method: "PUT",
       credentials: "include",
     });
     const res = await req.json();
-    setUserInfo(res);
+    console.log(res);
+    if (res.valid === true) {
+      setUserInfo(res);
+    } else {
+      setUserInfo(initState);
+    }
   };
 
   //DATA
@@ -106,8 +108,8 @@ const App: React.FC = () => {
       <div>
         <Navbar
           loggedIn={userInfo.valid}
-          setUserInfo={setUserInfo}
           toggleColorMode={toggleColorMode}
+          userValidation={userValidation}
         />
         <div className="push" />
         <Routes>
