@@ -19,8 +19,6 @@ const Navbar: React.FC<IProps> = ({
   toggleColorMode,
 }) => {
   const logout = async (e: React.MouseEvent<HTMLAnchorElement>): Promise<void> => {
-    setUserInfo(initState);
-
     const req = await fetch(`${reqRoutes()}/logout`, {
       credentials: "include",
     });
