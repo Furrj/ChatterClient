@@ -23,9 +23,10 @@ const Post: React.FC<IProps> = ({ data, darkMode, userInfo, fetchData }) => {
     }
   }, []);
 
+	//COLOR THEME
   let colorMode: string = darkMode ? "" : "cardLightMode";
 
-  //HELPER FUNCTIONS
+  //UPVOTE POST FUNCTION
   const upvote = async (e: React.MouseEvent<HTMLDivElement>): Promise<void> => {
     setPoints((points) => points + 1);
     try {
@@ -42,6 +43,7 @@ const Post: React.FC<IProps> = ({ data, darkMode, userInfo, fetchData }) => {
     }
   };
 
+	//DOWNVOTE POST FUNCTION
   const downvote = async (
     e: React.MouseEvent<HTMLDivElement>
   ): Promise<void> => {
@@ -61,6 +63,7 @@ const Post: React.FC<IProps> = ({ data, darkMode, userInfo, fetchData }) => {
     }
   };
 
+	//DELETE POST FUNCTION
   const deletePost = async (
     e: React.MouseEvent<HTMLButtonElement>
   ): Promise<void> => {

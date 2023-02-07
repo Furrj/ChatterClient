@@ -30,8 +30,10 @@ const Community: React.FC<IProps> = ({
   const [rerender, setRerender] = useState<boolean>(false);
   const [mobile, setMobile] = useState<boolean>(false);
 
+	//GET CURRENT COMMUNITY
   let { com } = useParams();
 
+	//COLOR THEME
   let colorMode: string = darkMode ? "" : "cardLightMode";
   let linkColorMode: string = darkMode ? "" : "linkLightMode";
 

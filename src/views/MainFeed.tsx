@@ -39,6 +39,7 @@ const MainFeed: React.FC<IProps> = ({
   const [rerender, setRerender] = useState<boolean>(false);
   const [mobile, setMobile] = useState<boolean>(false);
 
+	//COLOR THEME
   let colorMode: string = darkMode ? "" : "cardLightMode";
   let linkColorMode: string = darkMode ? "" : "linkLightMode";
 

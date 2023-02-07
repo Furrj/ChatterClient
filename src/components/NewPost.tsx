@@ -5,6 +5,7 @@ import { reqRoutes } from "../utils/reqRoutes";
 //UTILS
 import getCurrentDate from "../utils/getDate";
 
+//TS
 import { IUser } from "../App";
 
 interface IProps {
@@ -42,10 +43,11 @@ const NewPost: React.FC<IProps> = ({
 }) => {
   const [postInfo, setPostInfo] = useState<IState>(initState);
 
+	//COLOR THEME
   let colorMode: string = darkMode ? "" : "cardLightMode";
   let textAreaColorMode: string = darkMode ? "" : "textAreaLightMode";
 
-  //HELPER FUNCTIONS
+  //INPUT HANDLER
   const inputHandler = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -54,6 +56,7 @@ const NewPost: React.FC<IProps> = ({
     setPostInfo({ ...postInfo, [e.target.name]: e.target.value });
   };
 
+	//SUBMIT POST FUNCTION
   const submitPost = async (): Promise<void> => {
     const newPost: IPostSend = {
       text: postInfo.text,

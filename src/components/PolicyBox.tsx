@@ -7,6 +7,7 @@ interface IProps {
 }
 
 const PolicyBox: React.FC<IProps> = ({ darkMode }) => {
+	//COLOR THEME
   let colorMode: string = darkMode ? "" : "cardLightMode";
 
   return (

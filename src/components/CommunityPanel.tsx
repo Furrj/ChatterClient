@@ -16,6 +16,7 @@ const CommunityPanel: React.FC<IProps> = ({ community, userInfo }) => {
 
   var icon: JSX.Element | undefined;
 
+	//GET ICON BASED ON CURRENT COMMUNITY
   switch (community) {
     case "sports":
       icon = <i className="fa-solid fa-volleyball fa-2xl" />;
@@ -37,6 +38,7 @@ const CommunityPanel: React.FC<IProps> = ({ community, userInfo }) => {
       break;
   }
 
+	//SUBSCRIBE TO COMMUNITY FUNCTION
   const subscribeToCommunity = async (
     e: React.MouseEvent<HTMLDivElement>
   ): Promise<void> => {

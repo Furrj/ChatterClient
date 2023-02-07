@@ -37,6 +37,7 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode, fetchData }) => {
 
   const navigate: NavigateFunction = useNavigate();
 
+  //COLOR THEME
   let colorMode: string = darkMode ? "" : "cardLightMode";
 
   useEffect(() => {
@@ -47,40 +48,49 @@ const ProfilePage: React.FC<IProps> = ({ userInfo, darkMode, fetchData }) => {
     }
   }, []);
 
-  //HELPER FUNCTIONS
+  //FETCH PROIFLE DATA FUNCTION
   const fetchUserData = async () => {
-    const res = await fetch(`${reqRoutes()}/api/user`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: userInfo.id }),
-    });
-    const rawData = await res.json();
-    setPosts(rawData.posts);
-    setProfileInfo({
-      name: rawData.name,
-      age: rawData.age,
-      gender: rawData.gender,
-      bio: rawData.bio,
-    });
+    try {
+      const res = await fetch(`${reqRoutes()}/api/user`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: userInfo.id }),
+      });
+      const rawData = await res.json();
+      setPosts(rawData.posts);
+      setProfileInfo({
+        name: rawData.name,
+        age: rawData.age,
+        gender: rawData.gender,
+        bio: rawData.bio,
+      });
+    } catch (e) {
+      console.log(`Error: ${e}`);
+    }
   };
 
+  //SUBMIT UPDATED PROFILE INFO FUNCTION
   const submitInfo = async () => {
-    const res = await fetch(`${reqRoutes()}/api/user/update`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: userInfo.id,
-        name: profileInfo.name,
-        age: profileInfo.age,
-        gender: profileInfo.gender,
-        bio: profileInfo.bio,
-      }),
-    });
-    await res.json();
+    try {
+      const res = await fetch(`${reqRoutes()}/api/user/update`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: userInfo.id,
+          name: profileInfo.name,
+          age: profileInfo.age,
+          gender: profileInfo.gender,
+          bio: profileInfo.bio,
+        }),
+      });
+      await res.json();
+    } catch (e) {
+      console.log(`Error: ${e}`);
+    }
   };
 
   const postContent: JSX.Element[] = posts.map((post) => {
