@@ -12,16 +12,21 @@ interface IProps {
 const Navbar: React.FC<IProps> = ({
   loggedIn,
   toggleColorMode,
-  userValidation
+  userValidation,
 }) => {
+  //LOGOUT FUNCTION
   const logout = async (
     e: React.MouseEvent<HTMLAnchorElement>
   ): Promise<void> => {
-    const req = await fetch(`${reqRoutes()}/logout`, {
-      credentials: "include",
-    });
-    const res = await req.json();
-    userValidation();
+    try {
+      const req = await fetch(`${reqRoutes()}/logout`, {
+        credentials: "include",
+      });
+      const res = await req.json();
+      userValidation();
+    } catch (e) {
+      console.log(`Error: ${e}`);
+    }
   };
 
   return (

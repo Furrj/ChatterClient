@@ -38,27 +38,31 @@ const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState<boolean>(true);
   const [posts, setPosts] = useState<IPost[]>([]);
 
-  //CHECK IF LOGGED IN AND GENERATE GUESTNAME
+  //CHECK IF LOGGED IN AND GENERATE GUESTNAME IF NOT
   useEffect(() => {
     userValidation();
   }, []);
 
   //CHECK USER INFO
   const userValidation = async (): Promise<void> => {
-    const req = await fetch(`${reqRoutes()}/validate`, {
-      method: "PUT",
-      credentials: "include",
-    });
-    const res = await req.json();
-    console.log(res);
-    if (res.valid === true) {
-      setUserInfo(res);
-    } else {
-      setUserInfo(initState);
+    try {
+      const req = await fetch(`${reqRoutes()}/validate`, {
+        method: "PUT",
+        credentials: "include",
+      });
+      const res = await req.json();
+      console.log(res);
+      if (res.valid === true) {
+        setUserInfo(res);
+      } else {
+        setUserInfo(initState);
+      }
+    } catch (e) {
+      console.log(`Error: ${e}`);
     }
   };
 
-  //DATA
+  //FETCH POST DATA
   const fetchData = async (): Promise<void> => {
     try {
       const res = await fetch(`${reqRoutes()}/api`);
@@ -97,6 +101,7 @@ const App: React.FC = () => {
     }
   };
 
+	//COLOR THEME
   const toggleColorMode = (): void => {
     setDarkMode(!darkMode);
   };

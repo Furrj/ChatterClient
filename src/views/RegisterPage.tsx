@@ -36,6 +36,7 @@ const RegisterPage: React.FC<IProps> = ({
 
   const navigate: NavigateFunction = useNavigate();
 
+  //COLOR THEME
   let colorMode: string = darkMode ? "" : "cardLightMode";
 
   useEffect(() => {
@@ -49,27 +50,33 @@ const RegisterPage: React.FC<IProps> = ({
     }
   }, [userInput]);
 
-  //HELPER FUNCTIONS
+  //REGISTER FUNCTION
   const register = async (
     e: React.MouseEvent<HTMLButtonElement>
   ): Promise<void> => {
-    const res = await fetch(`${reqRoutes()}/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userInput),
-    });
-    const data: IUser = await res.json();
-    if (!data.valid) {
-      setTaken(true);
-    } else {
-      setTaken(false);
-      setUserInfo(data);
-      return navigate("/");
+    try {
+      const res = await fetch(`${reqRoutes()}/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInput),
+      });
+			
+      const data: IUser = await res.json();
+      if (!data.valid) {
+        setTaken(true);
+      } else {
+        setTaken(false);
+        setUserInfo(data);
+        return navigate("/");
+      }
+    } catch (e) {
+      console.log(`Error: ${e}`);
     }
   };
 
+  //INPUT HANDLER
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setUserInuput({
       ...userInput,
@@ -77,6 +84,7 @@ const RegisterPage: React.FC<IProps> = ({
     });
   };
 
+  //PASSWORD VIEW TOGGLE
   const togglePassword1 = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const password1 = document.querySelector("#password1");
     if (password1) {
@@ -94,6 +102,7 @@ const RegisterPage: React.FC<IProps> = ({
     }
   };
 
+  //PASSWORD VIEW TOGGLE
   const togglePassword2 = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const password2 = document.querySelector("#password2");
     if (password2) {

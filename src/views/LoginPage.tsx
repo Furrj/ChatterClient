@@ -23,44 +23,52 @@ interface IProps {
   darkMode: boolean;
 }
 
-const LoginPage: React.FC<IProps> = ({
-  userInfo,
-  setUserInfo,
-  darkMode,
-}) => {
+const LoginPage: React.FC<IProps> = ({ userInfo, setUserInfo, darkMode }) => {
   //Init State
   const [userInput, setUserInuput] = useState<IState>(initState);
   const [invalidInfo, setInvalidInfo] = useState<boolean>(false);
 
   const navigate: NavigateFunction = useNavigate();
 
+  //COLOR THEME
   let cardColorMode: string = darkMode ? "" : "cardLightMode";
 
-  //Helper Functions
+  //LOGIN FUNCTION
   const login = async (
     e: React.MouseEvent<HTMLButtonElement>
   ): Promise<any> => {
-    //FETCH REQ
-    const res = await fetch(`${reqRoutes()}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userInput),
-    });
+    try {
+      const res = await fetch(`${reqRoutes()}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInput),
+      });
 
-    //RES
-    const data: IUser = await res.json();
-    console.log(data);
-    if (data.valid) {
-      setUserInfo(data);
-      setInvalidInfo(false);
-      return navigate("/mainfeed");
-    } else {
-      setInvalidInfo(true);
+      const data: IUser = await res.json();
+      console.log(data);
+      if (data.valid) {
+        setUserInfo(data);
+        setInvalidInfo(false);
+        return navigate("/mainfeed");
+      } else {
+        setInvalidInfo(true);
+      }
+    } catch (e) {
+      console.log(`Error: ${e}`);
     }
   };
 
+	//INPUT HANDLER
+	const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setUserInuput({
+      ...userInput,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+	//PASSWORD VIEW TOGGLE
   const togglePassword = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const password = document.querySelector("#password");
     if (password) {
@@ -76,13 +84,6 @@ const LoginPage: React.FC<IProps> = ({
         eye.classList.toggle("fa-eye-slash");
       }
     }
-  };
-
-  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setUserInuput({
-      ...userInput,
-      [e.target.name]: e.target.value,
-    });
   };
 
   return (
